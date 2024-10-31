@@ -4,5 +4,11 @@
     {
         Hello hello = new Hello();
         hello.PrintHello();
+
+
+        // instance of a manager
+        Manager manager = new Manager("James", "Bond", 007);
+
+        manager.AddTask();
     }
 }
