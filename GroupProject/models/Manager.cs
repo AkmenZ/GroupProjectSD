@@ -1,8 +1,11 @@
 public class Manager : User
 {
+    // props
+    public string Department {get; set;}
     // constructor
-    public Manager(string firstName, string lastName, int employeeId) : base(firstName, lastName, employeeId)
+    public Manager(string firstName, string lastName, int employeeId, string department) : base(firstName, lastName, employeeId)
     {
+        Department = department;
     }
 
     // methods
