@@ -7,7 +7,7 @@
 
 
         // instance of a manager
-        Manager manager = new Manager("James", "Bond", 007);
+        Manager manager = new Manager("James", "Bond", 007, "R&D");
 
         manager.AddTask();
     }
