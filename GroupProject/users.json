@@ -1,0 +1,11 @@
+[
+    {
+        "FirstName": "Mary",
+        "LastName": "Doherty",
+        "EmployeeId": 1,
+        "Email": "mary@project.com",
+        "Password": "12345",
+        "Role": "Manager",
+        "Department": "R&D"
+    }
+]
