@@ -1,10 +1,10 @@
-public class Task: ITrackable
+public class Task
 {
     // props
     public int Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-    public string? AssignedTo { get; set; } // nullable prop
+    public int? AssignedTo { get; set; } // nullable prop
     public string Status { get; set; } = "New"; // initial status
 
     // constructor
@@ -19,12 +19,5 @@ public class Task: ITrackable
     public override string ToString()
     {
         return $"Task Id: {Id}, Title: {Title}, Status: {Status}";
-    }
-
-    // from interface
-    public void UpdateStatus(string newStatus)
-    {
-        // TODO (logic to update task status)
-        Console.WriteLine("Updateing status");
     }
 }
