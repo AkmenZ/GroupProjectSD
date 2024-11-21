@@ -59,3 +59,56 @@ To modify existing features:
 3.	Update Data Structures: If necessary, update the models to include new properties or methods.
 4.	Update UI to include interface handling user interaction. 
 5.	Update the Program.cs to reflect changes in menu options.
+
+Backlog:
+
+	// Means done
+	/? Partially done / needs review / or followed in future code
+	?  Should we do it?
+- //JSON Generic repository DataRepository.cs: List<T>GetAll(), List<T>SaveAll()//
+- //Bug: Deserialization of properties unique to subclasses
+- //LoggerService: LogAction(), GetLogs()
+- //InputService: ReadValidString(), RadValidInt(), ReadValidDouble(), ReadValidDate()
+- //Authorisation service: CurrentUsername, CurrentUserRole, IsUserLoggedIn, Login(), Logout()
+- //PasswordSerivce: GenerateSalt(), HashPassword(), VerifyPassword()
+- //Models: Enumms, User, Administrator, Manager, TeamMember, Project, Task
+- //Enums: UserRole, ProjectStatus, TaskStatus
+- //UserService: AddUser(), DeleteUser(), ChangePassword(), Query methods
+- //TasksService: GenerateTaskID(), AddTask(), AssignUserToTask(), StartTask(), StopTask(), //TasksService: UpdateTaskStatus(), DeleteTask(), GetTaskByID(), List Queries
+- //ProjectsService: AddProject(), UpdateProjectStatus(), DeleteProject(), GetProjectByID(), //ProjectsService: ListQueries
+- //Role based menu: DisplayMenu(UserRole), ManageMenuChoice(choice, UserRole, ServicesUI)
+- //Update project status
+- //Task ID should be unique for each project
+- //start task
+- //complete task
+- //Test starting task assigned to different user 
+- //Task can be added with assignee value 'none'
+- //Display project ID when listing tasks
+- //ITaskable
+- //Seaparating UI from Service - remove write lines statements from services
+- //test if task update status persists
+- //adding project with "none" as manager - set to string 'none' instead null
+- ?Refactor code to use Interfaces
+- Create unit tests
+- ?Refactor app to use async
+- ?Split ServicesUI into separate classes for each service
+- Assign Manager to project with 'none'
+- Start project
+- Complete project
+- Task priorities
+- Projects timeline (start dates, end dates etc)
+- Task timeline (start date, transition date)
+- Cascading delete:
+-	Deleting user (Assigned tasks? set to none)
+-	Deleting project (Project tasks? delete/archive)
+- Review user types Intern / QA
+- MinimumWIP
+- Reporting - calculate Project progress
+- Automatic project updates
+- Log incorrect logins
+- Parse enums input
+- Consider archiving
+- Get users by role - add to menu
+- /?Separation of concern UI - Services (No WriteLine statements in Services)
+- /?check object existence when passing as parameter, query object before passing
+/?Exception handling
