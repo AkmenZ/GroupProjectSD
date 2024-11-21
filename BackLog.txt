@@ -1,0 +1,51 @@
+// Means done
+/? Partially done / needs review / or be included in future code
+
+//JSON Generic repository DataRepository.cs: List<T>GetAll(), List<T>SaveAll()
+//Bug: Deserialization of properties unique to subclasses
+//LoggerService: LogAction(), GetLogs()
+//InputService: ReadValidString(), RadValidInt(), ReadValidDouble(), ReadValidDate()
+//Authorisation service: CurrentUsername, CurrentUserRole, IsUserLoggedIn, Login(), Logout()
+//PasswordSerivce: GenerateSalt(), HashPassword(), VerifyPassword()
+//Models: Enumms, User, Administrator, Manager, TeamMember, Project, Task
+//Enums: UserRole, ProjectStatus, TaskStatus
+//UserService: AddUser(), DeleteUser(), ChangePassword(), Query methods
+//TasksService: GenerateTaskID(), AddTask(), AssignUserToTask(), StartTask(), StopTask(), //TasksService: UpdateTaskStatus(), DeleteTask(), GetTaskByID(), List Queries
+//ProjectsService: AddProject(), UpdateProjectStatus(), DeleteProject(), GetProjectByID(), //ProjectsService: ListQueries
+//Role based menu: DisplayMenu(UserRole), ManageMenuChoice(choice, UserRole, ServicesUI)
+//Update project status
+//Task ID should be unique for each project
+//start task
+//complete task
+//Test starting task assigned to different user 
+//Task can be added with assignee value 'none'
+//Display project ID when listing tasks
+//ITaskable
+//Seaparating UI from Service - remove write lines statements from services
+//test if task update status persists
+//adding project with "none" as manager - set to string 'none' instead null
+?Refactor code to use Interfaces
+Create unit tests
+?Refactor app to use async
+?Split ServicesUI into separate classes for each service
+
+Assign Manager to project with 'none'
+Start project
+Complete project
+Task priorities
+Projects timeline (start dates, end dates etc)
+Task timeline (start date, transition date)
+Cascading delete:
+Deleting user (Assigned tasks? set to none)
+Deleting project (Project tasks? delete/archive)
+Review user types Intern / QA
+Minimum WIP
+Reporting - calculate Project progress
+Automatic project updates
+Log incorrect logins
+Parse enums input
+Consider archiving
+Get users by role - add to menu
+/?Separation of concern UI - Services
+/?check object existence when passing as parameter, query object before passing
+/?Exception handling
