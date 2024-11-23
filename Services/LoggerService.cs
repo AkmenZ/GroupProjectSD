@@ -5,18 +5,26 @@ using System.Linq;
 
 namespace ProjectManagementApp
 {
-    public class LoggerService
+    public class LoggerService : ILoggerService
     {
+        //Property to store authentication service
+        private readonly IAuthService _authService;
+
+        //Constructor, dependency injection
+        public LoggerService(IAuthService authService)
+        {
+            _authService = authService;
+        }
         //Log file path
         private readonly string _logFilePath = "log.txt";
 
         //Log action
-        public void LogAction(string action, string currentRole, string username)
+        public void LogAction(string action)
         {
             try
             {
                 //Create log entry
-                var logEntry = $"{DateTime.Now} : {action} By: {username} : {currentRole}";
+                var logEntry = $"{DateTime.Now} : {action} By: {_authService.CurrentUsername} : {_authService.CurrentUserRole}";
                 //Write to log file
                 File.AppendAllLines(_logFilePath, new[] { logEntry });
             }

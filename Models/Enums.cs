@@ -8,7 +8,8 @@ namespace ProjectManagementApp
         TeamMember,
         Manager,
         Intern,
-        Administrator
+        Administrator,
+        System
     }
 
     //Different project statuses

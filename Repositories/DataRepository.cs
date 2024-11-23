@@ -5,7 +5,7 @@ using System.IO;
 
 namespace ProjectManagementApp
 {
-    public class DataRepository<T> where T : class
+    public class DataRepository<T> : IRepository<T> where T : class
     {
         //Attribute to store JSON file path
         private readonly string _filePath;

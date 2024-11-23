@@ -4,22 +4,20 @@ using System.Linq;
 
 namespace ProjectManagementApp
 {
-    public class UsersService
+    public class UsersService : IUsersService
     {
         //List to store users
-        private List<User> _users = new();
+        private List<User> _users;
         //Property to store user repository
-        private readonly DataRepository<User> _userRepository;
-        //Properties to store dependencies
-        private AuthService _authService;
-        private LoggerService _loggerService;
+        private readonly IRepository<User> _userRepository;
+        //Properties to store dependencies        
+        private readonly ILoggerService _loggerService;
 
         //Constructor, dependency injection
-        public UsersService(DataRepository<User> userRepository, LoggerService loggerService, AuthService authService)
+        public UsersService(IRepository<User> userRepository, ILoggerService loggerService)
         {
             _userRepository = userRepository;
-            _loggerService = loggerService;
-            _authService = authService;
+            _loggerService = loggerService;           
             _users = _userRepository.GetAll();
         }
 
@@ -40,7 +38,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction($"User added: {user.Username}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername ?? "System");
+                _loggerService.LogAction($"User added: {user.Username}");
                 //Return true when added
                 return true;
             }
@@ -62,7 +60,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction($"User deleted: {username}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+                _loggerService.LogAction($"User deleted: {username}");
                 //Return true when deleted
                 return true;
             }
@@ -85,7 +83,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction($"Password changed for: {username}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+                _loggerService.LogAction($"Password changed for: {username}");
                 //Return true when password changed
                 return true;
             }
@@ -104,6 +102,24 @@ namespace ProjectManagementApp
                 if (user == null)
                 {
                     throw new Exception($"User with username {username} not found.");
+                }
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error get user by username: {ex.Message}");
+            }
+        }
+
+        public User GetUserForLogin(string username)
+        {
+            try
+            {
+                var user = _users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+                if (user == null)
+                {
+                    return null;
                 }
 
                 return user;

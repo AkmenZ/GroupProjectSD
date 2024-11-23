@@ -4,29 +4,21 @@ using System.Linq;
 
 namespace ProjectManagementApp
 {
-    public class TasksService
+    public class TasksService : ITasksService
     {
         //Private list of tasks
-        private List<Task> _tasks = new();              
+        private List<Task> _tasks;              
         //Property to store task repository
-        private readonly DataRepository<Task> _taskRepository;
+        private readonly IRepository<Task> _taskRepository;
         //Property to store project repository
-        private LoggerService _loggerService;
-        private AuthService _authService;
+        private readonly ILoggerService _loggerService;
 
         //Constructor, dependency injection
-        public TasksService(DataRepository<Task> taskRepository, LoggerService loggerService, AuthService authService)
+        public TasksService(IRepository<Task> taskRepository, ILoggerService loggerService)
         {
             _taskRepository = taskRepository;            
-            _loggerService = loggerService;
-            _authService = authService;
+            _loggerService = loggerService;            
             _tasks = _taskRepository.GetAll();         
-        }
-
-        //Generate task ID
-        private string GenerateTaskID(int nextTaskID, int projectID)
-        {
-            return $"{nextTaskID}.{projectID}";
         }
 
         //Add task to project
@@ -34,17 +26,18 @@ namespace ProjectManagementApp
         {
             //Get task data
             _tasks = _taskRepository.GetAll();
-            // Determine the next task ID for the project
+            //Determine the next task ID for the project
             int nextTaskID = _tasks.Where(t => t.ProjectID == projectID)
-                                   .Select(t => int.Parse(t.TaskID.Split('.')[0])).DefaultIfEmpty(0).Max() + 1;
+                                   .Select(t => int.Parse(t.TaskID
+                                   .Split('.')[0])).DefaultIfEmpty(0).Max() + 1;
             //Create new task
-            var task = new Task(GenerateTaskID(nextTaskID, projectID), title, description, assignedTo, projectID);
+            var task = new Task(nextTaskID, title, description, assignedTo, projectID);
             //Add task to tasks list
             _tasks.Add(task);
             //Save changes to tasks
             _taskRepository.SaveAll(_tasks);           
             //Log action
-            _loggerService.LogAction($"Task assigned project Task ID: {task.TaskID}: {title} : project ID:{projectID}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+            _loggerService.LogAction($"Task assigned project Task ID: {task.TaskID}: {title} : project ID:{projectID}");
             //Return true when task added
             return true;
         }
@@ -61,44 +54,44 @@ namespace ProjectManagementApp
             //Save changes
             _taskRepository.SaveAll(_tasks);
             //Log action
-            _loggerService.LogAction($"Task assigned user: {username} : Task ID: {taskId} : {task.Title}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+            _loggerService.LogAction($"Task assigned to: {username} : Task ID: {taskId} : {task.Title}");
             //Return true when user assigned            
             return true;
         }
 
         //Start task
-        public bool StartTask(string taskId)
+        public bool StartTask(string taskId, string currentUsername)
         {
             //Get data
             _tasks = _taskRepository.GetAll();
             //Find task by ID
             var task = GetTaskById(taskId);
             //Start task
-            if (task.StartTask(_authService.CurrentUsername))
+            if (task.StartTask(currentUsername))
             {
                 return true;
             }
             //Save changes
             _taskRepository.SaveAll(_tasks);
             //Log action
-            _loggerService.LogAction($"Task started ID: {taskId} : {task.Title}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+            _loggerService.LogAction($"Task started ID: {taskId} : {task.Title}");
             //Return true when task started
             return false;
         }
 
         //Complete task
-        public bool StopTask(string taskId) 
+        public bool StopTask(string taskID, string currentUsername ) 
         {
             //Get data
             _tasks = _taskRepository.GetAll();
             //Find task by ID
-            var task = GetTaskById(taskId);
+            var task = GetTaskById(taskID);
             //Complete task
-            task.CompleteTask(_authService.CurrentUsername);
+            task.CompleteTask(currentUsername);
             //Save changes
             _taskRepository.SaveAll(_tasks);
             //Log action
-            _loggerService.LogAction($"Task completed ID: {taskId} : {task.Title}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+            _loggerService.LogAction($"Task completed ID: {taskID} : {task.Title}");
             //Return true when task completed
             return true;
         }
@@ -115,7 +108,7 @@ namespace ProjectManagementApp
             //Save changes
             _taskRepository.SaveAll(_tasks);
             //Log action
-            _loggerService.LogAction($"Task status updated ID: {taskId} : {task.Title} : updated to : {status}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+            _loggerService.LogAction($"Task status updated ID: {taskId} : {task.Title} : updated to : {status}");
             //Return true when status updated
             return true;
         }
@@ -132,7 +125,7 @@ namespace ProjectManagementApp
             //Save changes
             _taskRepository.SaveAll(_tasks);
             //Log action
-            _loggerService.LogAction($"Task deleted ID: {taskId} : {task.Title}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+            _loggerService.LogAction($"Task deleted ID: {taskId} : {task.Title}");
             //Return true when task deleted
             return true;
         }

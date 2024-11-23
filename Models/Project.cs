@@ -4,11 +4,9 @@ using System.Collections.Generic;
 
 namespace ProjectManagementApp
 {
-    public class Project
+    public class Project : IProject
     {
-        //Properties
-        [JsonProperty]
-        public static int _nextProjectID = 1;
+        //Properties        
         [JsonProperty]
         public int ProjectID { get; private set; }
         [JsonProperty]
@@ -20,13 +18,10 @@ namespace ProjectManagementApp
         [JsonProperty]
         public string Description { get; private set; }
 
-        //Parameterless constructor for JSON deserialization
-        [JsonConstructor]
-        public Project() { }
         //Constructor for creating a new project
-        public Project(string projectName, string manager, string description)
+        public Project(int nextProjectID, string projectName, string manager, string description)
         {
-            ProjectID = _nextProjectID++;
+            ProjectID = nextProjectID;
             Name = projectName;
             Manager = manager;
             Status = ProjectStatus.Created;

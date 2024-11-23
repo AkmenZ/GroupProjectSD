@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 namespace ProjectManagementApp
 {
-    public class Manager : User
+    public class Manager : User, IManager
     {
         //Parameterless constructor for JSON deserialization
         [JsonConstructor]
