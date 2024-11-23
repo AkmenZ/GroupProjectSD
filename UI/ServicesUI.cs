@@ -3,17 +3,17 @@ using System.Linq;
 
 namespace ProjectManagementApp
 {
-    public class ServicesUI
+    public class ServicesUI : IServicesUI
     {
         //Properties to hold dependencies
-        private UsersService _usersService;
-        private ProjectsService _projectsService;
-        private TasksService _tasksService;
-        private AuthService _authService;
-        private LoggerService _loggerService;
+        private readonly IUsersService _usersService;
+        private readonly IProjectsService _projectsService;
+        private readonly ITasksService _tasksService;
+        private readonly IAuthService _authService;
+        private readonly ILoggerService _loggerService;
 
         //Constructor, dependency injection
-        public ServicesUI(UsersService usersService, ProjectsService projectsService, TasksService tasksService, LoggerService loggerService, AuthService authService)
+        public ServicesUI(IUsersService usersService, IProjectsService projectsService, ITasksService tasksService, ILoggerService loggerService, IAuthService authService)
         {
             _usersService = usersService;
             _projectsService = projectsService;
@@ -40,7 +40,7 @@ namespace ProjectManagementApp
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"\n {ex.Message}");
+                    Console.WriteLine($"\n  {ex.Message}");
                 }
             }
         }
@@ -290,7 +290,7 @@ namespace ProjectManagementApp
                 //Get task ID
                 string taskId = InputService.ReadValidString("\n  Enter task ID: ");
                 //Start task
-                if (_tasksService.StartTask(taskId))
+                if (_tasksService.StartTask(taskId, _authService.CurrentUsername))
                 {
                     Console.WriteLine("\n  Task started successfully.");
                 }
@@ -309,7 +309,7 @@ namespace ProjectManagementApp
                 //Get task ID
                 string taskId = InputService.ReadValidString("\n  Enter task ID: ");
                 //Complete task
-                if (_tasksService.StopTask(taskId))
+                if (_tasksService.StopTask(taskId, _authService.CurrentUsername))
                 {
                     Console.WriteLine("\n  Task completed successfully.");
                 }

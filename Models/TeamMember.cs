@@ -3,7 +3,7 @@ using System.Data;
 
 namespace ProjectManagementApp
 {
-    public class TeamMember : User
+    public class TeamMember : User, ITeamMember 
     {
         //Properties unique to TeamMember
         [JsonProperty]

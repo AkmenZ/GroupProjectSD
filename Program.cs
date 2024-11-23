@@ -7,17 +7,17 @@ namespace ProjectManagementApp
         static void Main(string[] args)
         {
             //Create instances of repositories
-            DataRepository<User> userRepository = new("users.json");
-            DataRepository<Project> projectRepository = new("projects.json");
-            DataRepository<Task> taskRepository = new("tasks.json");
+            IRepository<User> userRepository = new DataRepository<User>("users.json");
+            IRepository<Project> projectRepository = new DataRepository<Project>("projects.json");
+            IRepository<Task> taskRepository = new DataRepository<Task>("tasks.json");
             //Create instances of services, inject dependencies
-            LoggerService loggerService = new();
-            AuthService authService = new();
-            UsersService usersService = new(userRepository, loggerService, authService);
+            IAuthService authService = new AuthService();
+            ILoggerService loggerService = new LoggerService(authService);            
+            IUsersService usersService = new UsersService(userRepository, loggerService);
             //Inject users service into auth service, cannot be done in constructor as it needs to be initialized first
             authService.SetUsersService(usersService);
-            ProjectsService projectsService = new(projectRepository, loggerService, authService);
-            TasksService tasksService = new(taskRepository, loggerService, authService);
+            IProjectsService projectsService = new ProjectsService(projectRepository, loggerService);
+            ITasksService tasksService = new TasksService(taskRepository, loggerService);
             ServicesUI servicesUI = new(usersService, projectsService, tasksService, loggerService, authService);
 
             // Set console encoding to UTF-8

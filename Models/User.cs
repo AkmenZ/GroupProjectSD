@@ -3,15 +3,15 @@ using Newtonsoft.Json;
 
 namespace ProjectManagementApp
 {
-    public abstract class User
+    public abstract class User : IUser
     {
         //Properties common to all users
         [JsonProperty]
         public string Username { get; protected set; }
         [JsonProperty]
-        private string PasswordHash { get; set; }
+        private string _PasswordHash { get; set; }
         [JsonProperty]
-        private byte[] PasswordSalt { get; set; }
+        private byte[] _PasswordSalt { get; set; }
         [JsonProperty]
         public UserRole Role { get; protected set; }
 
@@ -28,13 +28,13 @@ namespace ProjectManagementApp
 
         public void SetPassword(string password)
         {
-            PasswordSalt = PasswordService.GenerateSalt();
-            PasswordHash = PasswordService.HashPassword(password, PasswordSalt);
+            _PasswordSalt = PasswordService.GenerateSalt();
+            _PasswordHash = PasswordService.HashPassword(password, _PasswordSalt);
         }
 
         public bool VerifyPassword(string password)
         {
-            return PasswordService.VerifyPassword(password, PasswordHash, PasswordSalt);
+            return PasswordService.VerifyPassword(password, _PasswordHash, _PasswordSalt);
         }
     }
 }

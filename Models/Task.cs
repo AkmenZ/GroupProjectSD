@@ -3,10 +3,8 @@ using Newtonsoft.Json;
 
 namespace ProjectManagementApp
 {
-    public class Task: ITrackable
-    {
-        [JsonProperty]
-        public int _nextTaskID = 1;
+    public class Task: ITask
+    {        
         [JsonProperty]
         public string TaskID { get; private set; }
         [JsonProperty]
@@ -21,9 +19,9 @@ namespace ProjectManagementApp
         public int ProjectID { get; private set; }
 
         [JsonConstructor]
-        public Task(string taskID, string title, string description, string assignedTo, int projectID)
-        {
-            TaskID = taskID;
+        public Task(int nextTaskID, string title, string description, string assignedTo, int projectID)
+        {            
+            TaskID = $"{nextTaskID}.{projectID}";
             Title = title;
             Description = description;
             AssignedTo = assignedTo;
@@ -32,12 +30,12 @@ namespace ProjectManagementApp
         }
   
         //Start task by a user : Itrackable
-        public bool StartTask(string username)
+        public bool StartTask(string currentUsername)
         {
             try
             {
                 //Check if task is assigned to user
-                if (!AssignedTo.Equals(username, StringComparison.OrdinalIgnoreCase) & AssignedTo != "none")
+                if (!AssignedTo.Equals(currentUsername, StringComparison.OrdinalIgnoreCase) & AssignedTo != "none")
                 {
                     throw new InvalidOperationException("Only the assigned user can start the task.");
                 }
@@ -50,7 +48,7 @@ namespace ProjectManagementApp
                     //Assign user to task if not already assigned                
                     if (AssignedTo == "none")
                     {
-                        AssignedTo = username;
+                        AssignedTo = currentUsername;
                     }
 
                     return true;
@@ -88,13 +86,8 @@ namespace ProjectManagementApp
         }
 
         //Complete task by a user : Itrackable
-        public bool CompleteTask(string username)
-        {
-            if (Status == TaskStatus.InProgress)
-            {
-                Status = TaskStatus.Completed;
-                return true;
-            }
+        public bool CompleteTask(string currentUsername)
+        {           
             return false;
         }
     }

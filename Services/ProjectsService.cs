@@ -4,22 +4,20 @@ using System.Linq;
 
 namespace ProjectManagementApp
 {
-    public class ProjectsService
+    public class ProjectsService : IProjectsService
     {
         //List to store projects
-        private List<Project> _projects = new();
+        private List<Project> _projects;
         //Property to store project repository
-        private readonly DataRepository<Project> _projectRepository;
+        private readonly IRepository<Project> _projectRepository;
         //Properties to store dependencies
-        private LoggerService _loggerService;
-        private AuthService _authService;
+        private readonly ILoggerService _loggerService;
 
         //Constructor, dependency injection
-        public ProjectsService(DataRepository<Project> projectRepository, LoggerService loggerService, AuthService authService)
+        public ProjectsService(IRepository<Project> projectRepository, ILoggerService loggerService)
         {
             _projectRepository = projectRepository;
-            _loggerService = loggerService;
-            _authService = authService;
+            _loggerService = loggerService;            
             _projects = _projectRepository.GetAll();
         }
 
@@ -36,14 +34,16 @@ namespace ProjectManagementApp
                 {
                     throw new Exception($"Project: {name} already exists.");                    
                 }
+                //Determine the next project ID
+                int nextProjectID = _projects.Select(p => p.ProjectID).Max() + 1;
                 //Create new project
-                var project = new Project(name, manager, description);
+                var project = new Project(nextProjectID, name, manager, description);
                 //Add project to the projects list
                 _projects.Add(project);
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction($"Project added ID: {project.ProjectID} : {name}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+                _loggerService.LogAction($"Project added ID: {project.ProjectID} : {name}");
                 //Return true when project added
                 return true;
             }
@@ -68,7 +68,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction($"Project status updated ID: {projectID} : {project.Name} :updated to {status}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+                _loggerService.LogAction($"Project status updated ID: {projectID} : {project.Name} :updated to {status}");
                 //Return true when status updated
                 return true;
             }
@@ -93,7 +93,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction($"Project deleted: ID: {project.ProjectID} : {project.Name}", _authService.CurrentUserRole.ToString(), _authService.CurrentUsername);
+                _loggerService.LogAction($"Project deleted: ID: {project.ProjectID} : {project.Name}");
                 //Return true when project deleted
                 return true;
             }

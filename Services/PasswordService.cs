@@ -7,14 +7,14 @@ namespace ProjectManagementApp
     //https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
     public static class PasswordService
     {
-        const int keySize = 64;
-        const int iterations = 350000;
-        static HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
+        private const int _keySize = 64;
+        private const int _iterations = 350000;
+        private static HashAlgorithmName _hashAlgorithm = HashAlgorithmName.SHA512;
 
         //Generate random salt
         public static byte[] GenerateSalt()
         {
-            return RandomNumberGenerator.GetBytes(keySize);
+            return RandomNumberGenerator.GetBytes(_keySize);
         }
 
         //Hash password using PBKDF2
@@ -23,9 +23,9 @@ namespace ProjectManagementApp
             var hash = Rfc2898DeriveBytes.Pbkdf2(
                 Encoding.UTF8.GetBytes(password),
                 salt,
-                iterations,
-                hashAlgorithm,
-                keySize);
+                _iterations,
+                _hashAlgorithm,
+                _keySize);
             return Convert.ToHexString(hash);
         }
 
@@ -35,9 +35,9 @@ namespace ProjectManagementApp
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(
                 password,
                 salt,
-                iterations,
-                hashAlgorithm,
-                keySize);
+                _iterations,
+                _hashAlgorithm,
+                _keySize);
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
         }
     }
