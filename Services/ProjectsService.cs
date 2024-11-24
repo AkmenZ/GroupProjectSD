@@ -35,7 +35,7 @@ namespace ProjectManagementApp
                     throw new Exception($"Project: {name} already exists.");                    
                 }
                 //Determine the next project ID
-                int nextProjectID = _projects.Select(p => p.ProjectID).Max() + 1;
+                int nextProjectID = _projects.Select(p => p.ProjectID).DefaultIfEmpty(0).Max() + 1;
                 //Create new project
                 var project = new Project(nextProjectID, name, manager, description);
                 //Add project to the projects list
