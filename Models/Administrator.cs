@@ -8,8 +8,9 @@ namespace ProjectManagementApp
         protected Administrator() { }
         //Constructor for creating a new Administrator
         public Administrator(string username, string password)
-            : base(username, password, UserRole.Administrator)
+                      : base(username, password)
         {
+            Role = UserRole.Administrator;
         }
     }
 }

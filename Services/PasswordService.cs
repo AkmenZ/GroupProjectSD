@@ -5,20 +5,20 @@ using System.Text;
 namespace ProjectManagementApp
 {
     //https://code-maze.com/csharp-hashing-salting-passwords-best-practices/
-    public static class PasswordService
+    public class PasswordService : IPasswordService
     {
         private const int _keySize = 64;
         private const int _iterations = 350000;
         private static HashAlgorithmName _hashAlgorithm = HashAlgorithmName.SHA512;
-
+                
         //Generate random salt
-        public static byte[] GenerateSalt()
+        public byte[] GenerateSalt()
         {
             return RandomNumberGenerator.GetBytes(_keySize);
         }
 
         //Hash password using PBKDF2
-        public static string HashPassword(string password, byte[] salt)
+        public string HashPassword(string password, byte[] salt)
         {
             var hash = Rfc2898DeriveBytes.Pbkdf2(
                 Encoding.UTF8.GetBytes(password),
@@ -27,10 +27,10 @@ namespace ProjectManagementApp
                 _hashAlgorithm,
                 _keySize);
             return Convert.ToHexString(hash);
-        }
+        }        
 
         //Verify password
-        public static bool VerifyPassword(string password, string hash, byte[] salt)
+        public bool VerifyPassword(string password, string hash, byte[] salt)
         {
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(
                 password,

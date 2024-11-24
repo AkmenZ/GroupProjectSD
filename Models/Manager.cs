@@ -8,8 +8,9 @@ namespace ProjectManagementApp
         public Manager() { }
         //Constructor for creating a new Manager
         public Manager(string username, string password)
-            : base(username, password, UserRole.Manager)
+            : base(username, password)
         {
+            Role = UserRole.Manager;
         }
     }
 }

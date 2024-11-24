@@ -11,18 +11,20 @@ namespace ProjectManagementApp
         //Property to store user repository
         private readonly IRepository<User> _userRepository;
         //Properties to store dependencies        
+        private readonly IPasswordService _passwordService;
         private readonly ILoggerService _loggerService;
 
         //Constructor, dependency injection
-        public UsersService(IRepository<User> userRepository, ILoggerService loggerService)
+        public UsersService(IRepository<User> userRepository, IPasswordService passwordService, ILoggerService loggerService)
         {
             _userRepository = userRepository;
+            _passwordService = passwordService;
             _loggerService = loggerService;           
             _users = _userRepository.GetAll();
         }
 
         //Add user
-        public bool AddUser(User user)
+        public bool AddUser(User user, string password)
         {
             try
             {
@@ -33,6 +35,10 @@ namespace ProjectManagementApp
                 {
                     throw new Exception($"Username: {user.Username} already exists.");
                 }
+                //Generate password hash and salt
+                Byte[] passwordSalt = _passwordService.GenerateSalt();
+                string passwordHash = _passwordService.HashPassword(password, passwordSalt);
+                user.SetHashSalt(passwordHash, passwordSalt);
                 //Add user
                 _users.Add(user);
                 //Save changes
@@ -77,9 +83,12 @@ namespace ProjectManagementApp
                 //Get data
                 _users = _userRepository.GetAll();
                 //Get user
-                var user = GetUserByUsername(username);                
+                var user = GetUserByUsername(username);
+                //Generate new password hash and salt
+                var passwordSalt = _passwordService.GenerateSalt();
+                var passwordHash = _passwordService.HashPassword(newPassword, passwordSalt);
                 //Change password
-                user.SetPassword(newPassword);
+                user.SetHashSalt(passwordHash, passwordSalt);
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
@@ -112,6 +121,7 @@ namespace ProjectManagementApp
             }
         }
 
+        //Retrieve user for login. Return null if not found instead of throwing exception due to security reasons
         public User GetUserForLogin(string username)
         {
             try

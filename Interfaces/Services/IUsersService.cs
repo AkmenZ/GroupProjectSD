@@ -4,7 +4,7 @@ namespace ProjectManagementApp
 {
     public interface IUsersService
     {
-        bool AddUser(User user);
+        bool AddUser(User user, string password);
         bool DeleteUser(string username);
         bool ChangePassword(string username, string newPassword);
         User GetUserByUsername(string username);

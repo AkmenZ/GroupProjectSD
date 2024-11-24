@@ -9,32 +9,27 @@ namespace ProjectManagementApp
         [JsonProperty]
         public string Username { get; protected set; }
         [JsonProperty]
-        private string _PasswordHash { get; set; }
+        public string PasswordHash { get; private set; }
         [JsonProperty]
-        private byte[] _PasswordSalt { get; set; }
+        public byte[] PasswordSalt { get; private set; }
         [JsonProperty]
         public UserRole Role { get; protected set; }
 
         //Parameterless constructor for JSON deserialization
         [JsonConstructor]
         public User() { }
-        //Constructor for creating a new user
-        public User(string username, string password, UserRole role)
+       
+        public User(string username, string password)
         {
-            Username = username;
-            SetPassword(password);
-            Role = role;
+            Username = username;                   
         }
+        
 
-        public void SetPassword(string password)
+        //Update the password hash and salt
+        public void SetHashSalt(string passwordHash, byte[] passwordSalt)
         {
-            _PasswordSalt = PasswordService.GenerateSalt();
-            _PasswordHash = PasswordService.HashPassword(password, _PasswordSalt);
-        }
-
-        public bool VerifyPassword(string password)
-        {
-            return PasswordService.VerifyPassword(password, _PasswordHash, _PasswordSalt);
+            PasswordHash = passwordHash;
+            PasswordSalt = passwordSalt;
         }
     }
 }

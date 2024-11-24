@@ -11,9 +11,10 @@ namespace ProjectManagementApp
             IRepository<Project> projectRepository = new DataRepository<Project>("projects.json");
             IRepository<Task> taskRepository = new DataRepository<Task>("tasks.json");
             //Create instances of services, inject dependencies
-            IAuthService authService = new AuthService();
+            IPasswordService passwordService = new PasswordService();
+            IAuthService authService = new AuthService(passwordService);
             ILoggerService loggerService = new LoggerService(authService);            
-            IUsersService usersService = new UsersService(userRepository, loggerService);
+            IUsersService usersService = new UsersService(userRepository, passwordService, loggerService);
             //Inject users service into auth service, cannot be done in constructor as it needs to be initialized first
             authService.SetUsersService(usersService);
             IProjectsService projectsService = new ProjectsService(projectRepository, loggerService);

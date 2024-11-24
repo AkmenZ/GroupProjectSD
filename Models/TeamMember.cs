@@ -20,8 +20,13 @@ namespace ProjectManagementApp
         public TeamMember() { }
         //Constructor for creating a new TeamMember
         public TeamMember(string username, string password, string FirsName, string LastName, string Email, string Phone)
-            : base(username, password, UserRole.TeamMember)
+            : base(username, password)
         {
+            Role = UserRole.TeamMember;
+            FirstName = FirsName;
+            LastName = LastName;
+            Email = Email;
+            Phone = Phone;
         }
     }
 }

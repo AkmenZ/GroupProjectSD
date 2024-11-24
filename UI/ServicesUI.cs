@@ -82,7 +82,7 @@ namespace ProjectManagementApp
                 }
 
                 //Add user
-                if (_usersService.AddUser(user))
+                if (_usersService.AddUser(user, password))
                 {
                     Console.WriteLine($"\n  {role} account created successfully. Username: {username}");
                     return;
