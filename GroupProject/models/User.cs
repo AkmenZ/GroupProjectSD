@@ -1,38 +1,35 @@
-public abstract class User : IMenu
+﻿using System;
+using Newtonsoft.Json;
+
+namespace ProjectManagementApp
 {
-    // props
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public int EmployeeId { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public string Role { get; set; }
-    protected readonly TaskService TaskService;
-
-    // constructro
-    protected User(string firstName, string lastName, int employeeId, string email, string password, string role, TaskService taskService)
+    public abstract class User : IUser
     {
-        FirstName = firstName;
-        LastName = lastName;
-        EmployeeId = employeeId;
-        Email = email;
-        Password = password;
-        Role = role;
-        TaskService = taskService;
-    }
+        //Properties common to all users
+        [JsonProperty]
+        public string Username { get; protected set; }
+        [JsonProperty]
+        public string PasswordHash { get; private set; }
+        [JsonProperty]
+        public byte[] PasswordSalt { get; private set; }
+        [JsonProperty]
+        public UserRole Role { get; protected set; }
 
-    // methods
-    public virtual void ViewTasks()
-    {
-        var tasks = TaskService.LoadTasks();
-        Console.WriteLine("\nTasks:");
-        foreach (var task in tasks)
+        //Parameterless constructor for JSON deserialization
+        [JsonConstructor]
+        public User() { }
+       
+        public User(string username, string password)
         {
-            Console.WriteLine($"ID: {task.Id}, Title: {task.Title}, Description: {task.Description}");
+            Username = username;                   
+        }
+        
+
+        //Update the password hash and salt
+        public void SetHashSalt(string passwordHash, byte[] passwordSalt)
+        {
+            PasswordHash = passwordHash;
+            PasswordSalt = passwordSalt;
         }
     }
-
-    // abstract method to handle menu that will need to be implemented in derived classes
-    public abstract void HandleMenu();
 }
-

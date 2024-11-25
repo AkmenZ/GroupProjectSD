@@ -1,130 +1,72 @@
-using System.Text.Json;
+﻿using System;
 
-public class AuthService
+namespace ProjectManagementApp
 {
-    // props
-    private readonly string UserFilePath;
-    private readonly TaskService TaskService;
-
-    // constrictor
-    public AuthService(string userFilePath, TaskService taskService)
+    public class AuthService : IAuthService
     {
-        UserFilePath = userFilePath;
-        TaskService = taskService;
-    }
+        //Property to store IPasswordService dependency
+        private readonly IPasswordService _passwordService;
+        //Property to check if a user is logged in, must be false by default
+        public bool IsUserLoggedIn { get; private set; } = false;
+        //Property to store the current logged in username
+        public string CurrentUsername { get; private set; }
+        //Property to store the current logged in user role
+        public UserRole CurrentUserRole { get; private set; } = UserRole.System;
+        //Property to store the UsersManager dependency
+        private IUsersService _usersService;
 
-    // methods
-    // load users, deserialize user data
-    private List<JsonElement> LoadUsers()
-    {
-        if (!File.Exists(UserFilePath))
+        //Method to set the UsersManager dependency,
+        //Can't inject through constructor as it is initialized after SessionManager
+
+        //Parameterless constructor
+        public AuthService() { }
+        //Constructor to inject the IPasswordService dependency
+        public AuthService(IPasswordService passwordService)
         {
-            Console.WriteLine("User file not found!");
-            return new List<JsonElement>();
+            _passwordService = passwordService ?? throw new ArgumentNullException(nameof(IPasswordService));
         }
 
-        string json = File.ReadAllText(UserFilePath);
-        return JsonSerializer.Deserialize<List<JsonElement>>(json) ?? new List<JsonElement>();
-    }
-
-    // login and instanciate user object
-    public User? Login()
-    {
-        var users = LoadUsers();
-
-        Console.Write("Enter Email: ");
-        string email = Console.ReadLine() ?? string.Empty;
-
-        Console.Write("Enter Password: ");
-        string password = Console.ReadLine() ?? string.Empty;
-
-        // get user by email and password
-        var user = users.FirstOrDefault(u =>
-            u.TryGetProperty("Email", out var emailProp) &&
-            emailProp.GetString()?.Equals(email, StringComparison.OrdinalIgnoreCase) == true &&
-            u.TryGetProperty("Password", out var passwordProp) &&
-            passwordProp.GetString() == password);
-
-        if (user.ValueKind == JsonValueKind.Undefined)
+        public void SetUsersService(IUsersService usersService)
         {
-            Console.WriteLine("Invalid email or password!");
-            return null;
+            _usersService = usersService ?? throw new ArgumentNullException(nameof(IUsersService));
         }
 
-        // get user role
-        if (!user.TryGetProperty("Role", out var userRole))
+        //Login
+        public bool Login(string username, string password)
         {
-            Console.WriteLine("Role not found for the user!");
-            return null;
-        }
-
-        string role = userRole.GetString() ?? "Unknown";
-
-        // instanciate users based on role
-        switch (role)
-        {
-            case "Manager":
-                return CreateManager(user);
-
-            case "Intern":
-                return CreateIntern(user);
-
-            default:
-                Console.WriteLine($"Unknown role: {role}");
-                return null;
-        }
-    }
-
-    public List<JsonElement> GetNonManagerUsers()
-    {
-        var users = LoadUsers();
-        var nonManagerUsers = new List<JsonElement>();
-
-        foreach (var user in users)
-        {
-            // add to list users who are not managers
-            if (user.TryGetProperty("Role", out var userRole) && userRole.GetString() != "Manager")
+            try
             {
-                nonManagerUsers.Add(user);
+                //Get user by username
+                User user = _usersService.GetUserForLogin(username);
+                //Check if user exists and password is correct
+                if (user == null || !_passwordService.VerifyPassword(password, user.PasswordHash, user.PasswordSalt))
+                {
+                    //The message should not specify if the username or password is incorrect
+                    //due to security reasons
+                    throw new Exception("Invalid username or password");
+                }
+
+                //Set session properties
+                CurrentUsername = user.Username;
+                CurrentUserRole = user.Role;
+                IsUserLoggedIn = true;
+                //Return true when login is successful
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Login Error: {ex.Message}");
+                return false;
             }
         }
-        return nonManagerUsers;
-    }
 
-    // create manager user object
-    private Manager? CreateManager(JsonElement user)
-    {
-        if (user.TryGetProperty("Department", out var userDepartment))
+        //Logout
+        public void Logout()
         {
-            string department = userDepartment.GetString() ?? "Unknown";
-            return new Manager(
-                user.GetProperty("FirstName").GetString()!,
-                user.GetProperty("LastName").GetString()!,
-                user.GetProperty("EmployeeId").GetInt32(),
-                user.GetProperty("Email").GetString()!,
-                user.GetProperty("Password").GetString()!,
-                "Manager",
-                department,
-                TaskService,
-                this // this means the AuthService itself, since manager will use it to assign users to tasks
-            );
+            //Reset session properties
+            CurrentUsername = null;
+            CurrentUserRole = default(UserRole);
+            IsUserLoggedIn = false;
         }
-
-        Console.WriteLine("Manager department not found!");
-        return null;
-    }
-
-    // create intern user object
-    private Intern? CreateIntern(JsonElement user)
-    {
-        return new Intern(
-            user.GetProperty("FirstName").GetString()!,
-            user.GetProperty("LastName").GetString()!,
-            user.GetProperty("EmployeeId").GetInt32(),
-            user.GetProperty("Email").GetString()!,
-            user.GetProperty("Password").GetString()!,
-            "Intern",
-            TaskService
-        );
     }
 }
