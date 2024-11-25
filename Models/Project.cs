@@ -14,6 +14,8 @@ namespace ProjectManagementApp
         [JsonProperty]
         public string Manager { get; private set; }
         [JsonProperty]
+        public List<string> TeamMembers { get; private set; } = new List<string>();
+        [JsonProperty]
         public ProjectStatus Status { get; private set; }
         [JsonProperty]
         public string Description { get; private set; }
@@ -27,7 +29,13 @@ namespace ProjectManagementApp
             Status = ProjectStatus.Created;
             Description = description;
         }
-                
+
+        //Add team member to project
+        public void AddTeamMember(string username)
+        {
+            TeamMembers.Add(username);
+        }
+
         //Update project status
         public void UpdateStatus(ProjectStatus status)
         {

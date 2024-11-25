@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace ProjectManagementApp
 {
-    public class Task: ITask
+    public class Task : ITask
     {        
         [JsonProperty]
         public string TaskID { get; private set; }
@@ -16,9 +16,8 @@ namespace ProjectManagementApp
         [JsonProperty]
         public TaskStatus Status { get; private set; }
         [JsonProperty]
-        public int ProjectID { get; private set; }
+        public int ProjectID { get; private set; }                    
 
-        [JsonConstructor]
         public Task(int nextTaskID, string title, string description, string assignedTo, int projectID)
         {            
             TaskID = $"{nextTaskID}.{projectID}";
@@ -34,12 +33,6 @@ namespace ProjectManagementApp
         {
             try
             {
-                //Check if task is assigned to user
-                if (!AssignedTo.Equals(currentUsername, StringComparison.OrdinalIgnoreCase) & AssignedTo != "none")
-                {
-                    throw new InvalidOperationException("Only the assigned user can start the task.");
-                }
-
                 //Start task if status is ToDo
                 if (Status == TaskStatus.ToDo || Status == TaskStatus.Blocked)
                 {
@@ -56,10 +49,8 @@ namespace ProjectManagementApp
                 else
                 {
                     throw new Exception($"Only task with status: ToDo or Blocked can be started.");
-                }
-                
-                //Return false if task is already in progress
-                return false;
+                }                
+               
             }
             catch (Exception e)
             {
@@ -87,7 +78,13 @@ namespace ProjectManagementApp
 
         //Complete task by a user : Itrackable
         public bool CompleteTask(string currentUsername)
-        {           
+        {
+            if (Status == TaskStatus.InProgress)
+            {
+                Status = TaskStatus.Completed;
+                return true;
+            }
+
             return false;
         }
     }

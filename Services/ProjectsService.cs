@@ -43,7 +43,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction($"Project added ID: {project.ProjectID} : {name}");
+                _loggerService.LogAction("Project", project.ProjectID.ToString(), "added");                              
                 //Return true when project added
                 return true;
             }
@@ -53,9 +53,33 @@ namespace ProjectManagementApp
             }
         }
 
+        //Add team member to project
+        public bool AddTeamMember(int projectID, string username)
+        {
+            try
+            {
+                //Get data
+                _projects = _projectRepository.GetAll();
+                //Find project by ID
+                var project = GetProjectById(projectID);                
+                //Add team member to project
+                project.AddTeamMember(username);
+                //Save changes
+                _projectRepository.SaveAll(_projects);
+                //Log action
+                _loggerService.LogAction("Project", project.ProjectID.ToString(), $"Team Member added: {username}");
+                //Return true when team member added
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error Add Team Member: {ex.Message}");
+            }
+        }
+
         //Manually update project status
         //Need to consider business logic for automatic updates when all tasks are completed etc.
-        public bool UpdateProjectStatus(int projectID, ProjectStatus status)
+        public bool UpdateStatus(int projectID, ProjectStatus status)
         {
             try
             {
@@ -68,7 +92,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction($"Project status updated ID: {projectID} : {project.Name} :updated to {status}");
+                _loggerService.LogAction("Project", project.ProjectID.ToString(), $"Status Update to: {status}");                
                 //Return true when status updated
                 return true;
             }
@@ -93,7 +117,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction($"Project deleted: ID: {project.ProjectID} : {project.Name}");
+                _loggerService.LogAction("Project", project.ProjectID.ToString(), "Deleted");                
                 //Return true when project deleted
                 return true;
             }
@@ -124,18 +148,49 @@ namespace ProjectManagementApp
         }
 
         //Get manager projects
-        public IReadOnlyList<Project> GetManagerProjects(string username)
+        public IReadOnlyList<Project> GetProjectsByUser(string username)
         {
             try
             {                
                 //Filter projects by manager                
-                return _projects.Where(p => p.Manager.Equals(username, StringComparison.OrdinalIgnoreCase)).ToList();
+                return _projects.Where(p => p.Manager.Equals(username, StringComparison.OrdinalIgnoreCase))
+                                .ToList().AsReadOnly();
             }
             catch (Exception ex)
             {
                 throw new Exception($"\n  Error Get User Projects: {ex.Message}");
             }
         }
+
+        //Get projects by manager
+        public IReadOnlyList<Project> GetProjectsByManager(string manager)
+        {
+            try
+            {
+                //Filter projects by manager
+                return _projects.Where(p => p.Manager.Equals(manager, StringComparison.OrdinalIgnoreCase))
+                                .ToList().AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error Get Projects by Manager: {ex.Message}");
+            }
+        }
+
+        //Get projects by status
+        public IReadOnlyList<Project> GetProjectsByStatus(ProjectStatus status)
+        {
+            try
+            {
+                //Filter projects by status
+                return _projects.Where(p => p.Status == status).ToList().AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error Get Projects by Status: {ex.Message}");
+            }
+        }
+
 
 
         //Get all projects, return as read-only list

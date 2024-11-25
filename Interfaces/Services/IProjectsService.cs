@@ -5,10 +5,13 @@ namespace ProjectManagementApp
     public interface IProjectsService
     {
         bool AddProject(string name, string manager, string description);
-        bool UpdateProjectStatus(int projectID, ProjectStatus status);
+        bool AddTeamMember(int projectID, string username);
+        bool UpdateStatus(int projectID, ProjectStatus status);
         bool DeleteProject(int projectID);
         Project GetProjectById(int projectID);
-        IReadOnlyList<Project> GetManagerProjects(string username);
+        IReadOnlyList<Project> GetProjectsByUser(string username);
+        IReadOnlyList<Project> GetProjectsByManager(string manager);
+        IReadOnlyList<Project> GetProjectsByStatus(ProjectStatus status);
         IReadOnlyList<Project> GetAllProjects();
     }
 }

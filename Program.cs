@@ -10,15 +10,16 @@ namespace ProjectManagementApp
             IRepository<User> userRepository = new DataRepository<User>("users.json");
             IRepository<Project> projectRepository = new DataRepository<Project>("projects.json");
             IRepository<Task> taskRepository = new DataRepository<Task>("tasks.json");
+            IRepository<Log> logRepository = new DataRepository<Log>("logs.json");
             //Create instances of services, inject dependencies
             IPasswordService passwordService = new PasswordService();
             IAuthService authService = new AuthService(passwordService);
-            ILoggerService loggerService = new LoggerService(authService);            
+            ILoggerService loggerService = new LoggerService(logRepository, authService);            
             IUsersService usersService = new UsersService(userRepository, passwordService, loggerService);
             //Inject users service into auth service, cannot be done in constructor as it needs to be initialized first
             authService.SetUsersService(usersService);
             IProjectsService projectsService = new ProjectsService(projectRepository, loggerService);
-            ITasksService tasksService = new TasksService(taskRepository, loggerService);
+            ITasksService tasksService = new TasksService(taskRepository, authService, loggerService);
             ServicesUI servicesUI = new(usersService, projectsService, tasksService, loggerService, authService);
 
             // Set console encoding to UTF-8
@@ -96,16 +97,17 @@ namespace ProjectManagementApp
             else if (role == UserRole.Manager)
             {
                 Console.WriteLine("  [1]  Create Project");
-                Console.WriteLine("  [2]  Update Project Status");
-                Console.WriteLine("  [3]  Delete Project");
-                Console.WriteLine("  [4]  Add Task to Project");
-                Console.WriteLine("  [5]  Assign User Task");
-                Console.WriteLine("  [6]  Update Task Status");
-                Console.WriteLine("  [7]  Start Task");
-                Console.WriteLine("  [8]  Complete Task");
-                Console.WriteLine("  [9]  List All Projects");
-                Console.WriteLine("  [10] List All Tasks");
-                Console.WriteLine("  [11] Change Password");
+                Console.WriteLine("  [2]  Add team member to Project");
+                Console.WriteLine("  [3]  Update Project Status");
+                Console.WriteLine("  [4]  Delete Project");
+                Console.WriteLine("  [5]  Add Task to Project");
+                Console.WriteLine("  [6]  Assign User Task");
+                Console.WriteLine("  [7]  Update Task Status");
+                Console.WriteLine("  [8]  Start Task");
+                Console.WriteLine("  [9]  Complete Task");
+                Console.WriteLine("  [10]  List All Projects");
+                Console.WriteLine("  [11] List All Tasks");
+                Console.WriteLine("  [12] Change Password");
                 Console.WriteLine("  [0]  Logout");
             }
             else if (role == UserRole.TeamMember)
@@ -167,33 +169,36 @@ namespace ProjectManagementApp
                         servicesUI.CreateProject();
                         break;
                     case 2:
-                        servicesUI.UpdateProjectStatus();
+                        servicesUI.AddTeamMemberToProject();
                         break;
                     case 3:
-                        servicesUI.DeleteProject();
+                        servicesUI.UpdateProjectStatus();
                         break;
                     case 4:
-                        servicesUI.AddTask();
+                        servicesUI.DeleteProject();
                         break;
                     case 5:
-                        servicesUI.AssignUserToTask();
+                        servicesUI.AddTask();
                         break;
                     case 6:
-                        servicesUI.UpdateTaskStatus();
+                        servicesUI.AssignUserToTask();
                         break;
                     case 7:
-                        servicesUI.StartTask();
+                        servicesUI.UpdateTaskStatus();
                         break;
                     case 8:
-                        servicesUI.CompleteTask();
+                        servicesUI.StartTask();
                         break;
                     case 9:
-                        servicesUI.ListAllProjects();
+                        servicesUI.CompleteTask();
                         break;
                     case 10:
-                        servicesUI.ListAllTasks();
+                        servicesUI.ListAllProjects();
                         break;
                     case 11:
+                        servicesUI.ListAllTasks();
+                        break;
+                    case 12:
                         servicesUI.ChangePassword();
                         break;
                     case 0:

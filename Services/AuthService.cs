@@ -47,7 +47,7 @@ namespace ProjectManagementApp
                 }
 
                 //Set session properties
-                CurrentUsername = username;
+                CurrentUsername = user.Username;
                 CurrentUserRole = user.Role;
                 IsUserLoggedIn = true;
                 //Return true when login is successful

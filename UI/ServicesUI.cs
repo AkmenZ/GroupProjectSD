@@ -94,7 +94,7 @@ namespace ProjectManagementApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);                
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -169,6 +169,31 @@ namespace ProjectManagementApp
             }
         }
 
+        //Add team member to project
+        public void AddTeamMemberToProject()
+        {
+            try
+            {
+                //Get project ID
+                int projectId = InputService.ReadValidInt("\n  Enter project ID: ");
+                //Get project by ID
+                var project = _projectsService.GetProjectById(projectId);
+                //Get team member username
+                string teamMemberUsername = InputService.ReadValidString("\n  Enter team member's username: ");
+                //Verify if team member exists
+                var teamMember = _usersService.GetUserByUsername(teamMemberUsername);
+                //Add team member to project
+                if (_projectsService.AddTeamMember(projectId, teamMember.Username))
+                {
+                    Console.WriteLine($"\n  Team member: {teamMember.Username} added to project: {project.Name}.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         //Update task status
         public void UpdateProjectStatus()
         {
@@ -187,7 +212,7 @@ namespace ProjectManagementApp
                 //Convert choice to Project Status enum
                 ProjectStatus status = (ProjectStatus)(statusChoice - 1);
                 //Update task status
-                if (_projectsService.UpdateProjectStatus(projectId, status))
+                if (_projectsService.UpdateStatus(projectId, status))
                 {
                     Console.WriteLine($"\n  Project: {projectId} status updated to: {status}.");
                 }
@@ -237,7 +262,7 @@ namespace ProjectManagementApp
                 string assignee = null;
                 if (taskAssigneeUsername == "none")
                 {
-                    assignee = "none";                    
+                    assignee = "none";
                 }
                 //Get assignee
                 else
@@ -290,7 +315,7 @@ namespace ProjectManagementApp
                 //Get task ID
                 string taskId = InputService.ReadValidString("\n  Enter task ID: ");
                 //Start task
-                if (_tasksService.StartTask(taskId, _authService.CurrentUsername))
+                if (_tasksService.StartTask(taskId))
                 {
                     Console.WriteLine("\n  Task started successfully.");
                 }
@@ -309,7 +334,7 @@ namespace ProjectManagementApp
                 //Get task ID
                 string taskId = InputService.ReadValidString("\n  Enter task ID: ");
                 //Complete task
-                if (_tasksService.StopTask(taskId, _authService.CurrentUsername))
+                if (_tasksService.CompleteTask(taskId))
                 {
                     Console.WriteLine("\n  Task completed successfully.");
                 }
@@ -412,7 +437,7 @@ namespace ProjectManagementApp
                 Console.WriteLine("\n  Projects:");
                 foreach (var project in projects)
                 {
-                    Console.WriteLine($"  ID: {project.ProjectID}, Name: {project.Name}, Status: {project.Status}, Manager: {project.Manager}, Description: {project.Description}");
+                    Console.WriteLine($"  ID: {project.ProjectID}, Name: {project.Name}, Status: {project.Status}, Manager: {project.Manager}, Team Members: {string.Join(", ", project.TeamMembers)} {project.Description}");
                 }
             }
             catch (Exception ex)
@@ -420,7 +445,7 @@ namespace ProjectManagementApp
                 Console.WriteLine(ex.Message);
             }
         }
-        
+
         public void ChangePassword()
         {
             try
@@ -428,8 +453,7 @@ namespace ProjectManagementApp
                 string username = null;
 
                 //Change password
-                if (_authService.CurrentUserRole == UserRole.TeamMember ||
-                    _authService.CurrentUserRole == UserRole.Manager)
+                if (_authService.CurrentUserRole != UserRole.Administrator)
                 {
                     username = _authService.CurrentUsername;
 
@@ -465,7 +489,7 @@ namespace ProjectManagementApp
             var logs = _loggerService.GetLogs();
             foreach (var log in logs)
             {
-                Console.WriteLine(log);
+                Console.WriteLine($"  {log.Time} {log.LogID}, Item ID: {log.ItemID}, Item: {log.Item} : {log.Action}, By: {log.Username} : {log.Role}");
             }
         }
     }

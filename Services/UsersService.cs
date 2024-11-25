@@ -44,7 +44,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction($"User added: {user.Username}");
+                _loggerService.LogAction("User", user.Username, "added");                
                 //Return true when added
                 return true;
             }
@@ -66,7 +66,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction($"User deleted: {username}");
+                _loggerService.LogAction("User", user.Username, "deleted");                
                 //Return true when deleted
                 return true;
             }
@@ -92,7 +92,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction($"Password changed for: {username}");
+                _loggerService.LogAction("User", user.Username, "password change");
                 //Return true when password changed
                 return true;
             }

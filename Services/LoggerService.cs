@@ -9,50 +9,51 @@ namespace ProjectManagementApp
     {
         //Property to store authentication service
         private readonly IAuthService _authService;
+        //Property to store Log repository
+        private readonly IRepository<Log> _logRepository;
 
         //Constructor, dependency injection
-        public LoggerService(IAuthService authService)
+        public LoggerService(IRepository<Log> logRepository, IAuthService authService)
         {
+            _logRepository = logRepository;
             _authService = authService;
         }
-        //Log file path
-        private readonly string _logFilePath = "log.txt";
 
         //Log action
-        public void LogAction(string action)
+        public void LogAction(string item, string itemId, string action)
         {
             try
             {
-                //Create log entry
-                var logEntry = $"{DateTime.Now} : {action} By: {_authService.CurrentUsername} : {_authService.CurrentUserRole}";
-                //Write to log file
-                File.AppendAllLines(_logFilePath, new[] { logEntry });
+                //Get data
+                var logs = _logRepository.GetAll();
+                //Determine the next log ID
+                int nextLogID = logs.Select(l => l.LogID).DefaultIfEmpty(0).Max() + 1;
+                //Create new log
+                var log = new Log(nextLogID, itemId, item, action, _authService.CurrentUsername, _authService.CurrentUserRole);
+                //Add log to logs list
+                logs.Add(log);
+                //Save changes
+                _logRepository.SaveAll(logs);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error writing to log file: {_logFilePath} {ex.Message}");
+                Console.WriteLine($"Error logging action: {ex.Message}");
             }
+
         }
 
         //Get all logs
-        public List<string> GetLogs()
+        public IReadOnlyList<Log> GetLogs()
         {
             try
             {
-                //Check if log file exists
-                if (File.Exists(_logFilePath))
-                {
-                    //Read all lines from log file, return as list
-                    return File.ReadAllLines(_logFilePath).ToList();
-                }
-                //Return empty list if log file does not exist
-                return new List<string>();
+                return _logRepository.GetAll().ToList().AsReadOnly();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error reading log file: {_logFilePath} {ex.Message}");
-                return new List<string>();
+                throw new Exception($"Error getting logs: {ex.Message}");
             }
+
         }
     }
 }

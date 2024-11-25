@@ -10,6 +10,7 @@ namespace ProjectManagementApp
         void DeleteUser();
         void ListAllUsers();
         void CreateProject();
+        void AddTeamMemberToProject();
         void UpdateProjectStatus();
         void DeleteProject();
         void AddTask();
