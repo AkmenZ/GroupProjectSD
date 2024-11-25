@@ -29,4 +29,15 @@ namespace ProjectManagementApp
         Completed,
         Blocked
     }
+
+    //Different task types
+    public enum TaskType
+    {
+        Epic,
+        Idea,
+        Bug,
+        Feature,
+        Improvement,
+        Documentation
+    }
 }

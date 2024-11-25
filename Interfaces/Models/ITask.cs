@@ -5,6 +5,8 @@ namespace ProjectManagementApp
     public interface ITask
     {
         string TaskID { get; }
+        TaskType Type { get; }
+        string EpicID{ get; }
         string Title { get; }
         string Description { get; }
         string AssignedTo { get; }
@@ -14,5 +16,6 @@ namespace ProjectManagementApp
         bool CompleteTask(string currentUsername);
         bool UpdateStatus(TaskStatus newStatus);
         void AssignUser(string username);
+        void AssignToEpic(string epicID);   
     }
 }

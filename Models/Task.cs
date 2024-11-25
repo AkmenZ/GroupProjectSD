@@ -3,20 +3,28 @@ using Newtonsoft.Json;
 
 namespace ProjectManagementApp
 {
-    public class Task : ITask
+    public abstract class Task : ITask
     {        
         [JsonProperty]
-        public string TaskID { get; private set; }
+        public string TaskID { get; protected set; }
         [JsonProperty]
-        public string Title { get; private set; }
+        public string EpicID { get; protected set; }
         [JsonProperty]
-        public string Description { get; private set; }
+        public TaskType Type { get; protected set; }
         [JsonProperty]
-        public string AssignedTo { get; private set; }
+        public string Title { get; protected set; }
         [JsonProperty]
-        public TaskStatus Status { get; private set; }
+        public string Description { get; protected set; }
         [JsonProperty]
-        public int ProjectID { get; private set; }                    
+        public string AssignedTo { get; protected set; }
+        [JsonProperty]
+        public TaskStatus Status { get; protected set; }
+        [JsonProperty]
+        public int ProjectID { get; protected set; }
+
+        //Parameterless constructor for JSON serialization
+        [JsonConstructor]
+        public Task() { }
 
         public Task(int nextTaskID, string title, string description, string assignedTo, int projectID)
         {            
@@ -74,6 +82,12 @@ namespace ProjectManagementApp
         public void AssignUser(string username)
         {
             AssignedTo = username;
+        }
+
+        //Assign task to epic
+        public void AssignToEpic(string epicID)
+        {
+            EpicID = epicID;
         }
 
         //Complete task by a user : Itrackable

@@ -1,4 +1,6 @@
 ﻿using System;
+using Spectre.Console;
+using Spectre.Console.Cli;
 
 namespace ProjectManagementApp
 {
@@ -20,11 +22,8 @@ namespace ProjectManagementApp
             authService.SetUsersService(usersService);
             IProjectsService projectsService = new ProjectsService(projectRepository, loggerService);
             ITasksService tasksService = new TasksService(taskRepository, authService, loggerService);
-            ServicesUI servicesUI = new(usersService, projectsService, tasksService, loggerService, authService);
-
-            // Set console encoding to UTF-8
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-
+            IServicesUI servicesUI = new ServicesUI(usersService, projectsService, tasksService, loggerService, authService);
+                        
             //Set console encoding to UTF-8
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -96,6 +95,16 @@ namespace ProjectManagementApp
             }
             else if (role == UserRole.Manager)
             {
+                Console.WriteLine("  Project Actions:         View Projects:          View Tasks:                         Task Actions:");
+                Console.WriteLine("  ---------------------------------------------------------------------------------------------------------------");
+                Console.WriteLine("  [1]  Create              [5]  All                [10] All                            [17] Add");
+                Console.WriteLine("  [2]  Add Team Member     [6]  By Team Member     [11] By Project                     [18] Assign Team Member");
+                Console.WriteLine("  [3]  Update Status       [7]  By Manager         [12] By Manager                     [19] Assign Task to Epic");
+                Console.WriteLine("  [4]  Delete              [8]  By Status          [13] By Project And Status          [20] Start"); 
+                Console.WriteLine("                           [9]  Team Members       [14] By Project And Type            [21] Update Status");
+                Console.WriteLine("  ==============================================   [15] By Project And Team Member     [22] Complete");
+                Console.WriteLine("  [23] Change Password     [0]  Logout             [16] By Epic                        [23] Delete");
+/*
                 Console.WriteLine("  [1]  Create Project");
                 Console.WriteLine("  [2]  Add team member to Project");
                 Console.WriteLine("  [3]  Update Project Status");
@@ -109,6 +118,7 @@ namespace ProjectManagementApp
                 Console.WriteLine("  [11] List All Tasks");
                 Console.WriteLine("  [12] Change Password");
                 Console.WriteLine("  [0]  Logout");
+                */
             }
             else if (role == UserRole.TeamMember)
             {                
@@ -122,7 +132,7 @@ namespace ProjectManagementApp
             }
         }
 
-        private static void ManageMenuChoice(int choice, UserRole role, ServicesUI servicesUI)
+        private static void ManageMenuChoice(int choice, UserRole role, IServicesUI servicesUI)
         {
             if (role == UserRole.Administrator)
             {
@@ -178,34 +188,70 @@ namespace ProjectManagementApp
                         servicesUI.DeleteProject();
                         break;
                     case 5:
-                        servicesUI.AddTask();
-                        break;
-                    case 6:
-                        servicesUI.AssignUserToTask();
-                        break;
-                    case 7:
-                        servicesUI.UpdateTaskStatus();
-                        break;
-                    case 8:
-                        servicesUI.StartTask();
-                        break;
-                    case 9:
-                        servicesUI.CompleteTask();
-                        break;
-                    case 10:
                         servicesUI.ListAllProjects();
                         break;
-                    case 11:
+                    case 6:
+                        servicesUI.ListProjectsByUser();
+                        break;
+                    case 7:
+                        servicesUI.ListProjectsByManager    ();
+                        break;
+                    case 8:
+                        servicesUI.ListProjectsByStatus();
+                        break;
+                    case 9:
+                        servicesUI.ListProjectTeamMembers();
+                        break;
+                    case 10:
                         servicesUI.ListAllTasks();
                         break;
+                    case 11:
+                        servicesUI.ListProjectTasks();
+                        break;
                     case 12:
+                        servicesUI.ListTasksByManager();
+                        break;
+                    case 13:
+                        servicesUI.ListProjectTasksByStatus();
+                        break;
+                    case 14:
+                        servicesUI.ListProjectTasksByType();
+                        break;
+                    case 15:
+                        servicesUI.ListProjectTasksByUser();
+                        break;
+                    case 16:
+                        servicesUI.ListEpicTasks();
+                        break;
+                    case 17:
+                        servicesUI.AddTask();
+                        break;
+                    case 18:
+                        servicesUI.AssignUserToTask();
+                        break;
+                    case 19:
+                        servicesUI.AssignTaskToEpic();
+                        break;
+                    case 20:
+                        servicesUI.StartTask();
+                        break;
+                    case 21:
+                        servicesUI.UpdateTaskStatus();
+                        break;
+                    case 22:
+                        servicesUI.CompleteTask();
+                        break;
+                    case 23:
+                        servicesUI.DeleteTask();
+                        break;
+                    case 24:
                         servicesUI.ChangePassword();
                         break;
                     case 0:
-                        servicesUI.Logout();
+                        servicesUI.Logout();                        
                         break;
                     default:
-                        Console.WriteLine("\n  Invalid choice.");
+                        Console.WriteLine("  Invalid choice. Please try again.\n");
                         break;
                 }
             }

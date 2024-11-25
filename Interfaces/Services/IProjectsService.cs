@@ -12,6 +12,7 @@ namespace ProjectManagementApp
         IReadOnlyList<Project> GetProjectsByUser(string username);
         IReadOnlyList<Project> GetProjectsByManager(string manager);
         IReadOnlyList<Project> GetProjectsByStatus(ProjectStatus status);
+        IReadOnlyList<string> GetProjectTeamMemebrs(int projectID);
         IReadOnlyList<Project> GetAllProjects();
     }
 }

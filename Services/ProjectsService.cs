@@ -17,7 +17,7 @@ namespace ProjectManagementApp
         public ProjectsService(IRepository<Project> projectRepository, ILoggerService loggerService)
         {
             _projectRepository = projectRepository;
-            _loggerService = loggerService;            
+            _loggerService = loggerService;
             _projects = _projectRepository.GetAll();
         }
 
@@ -32,7 +32,7 @@ namespace ProjectManagementApp
                 //Check if project name already exists
                 if (_projects.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
                 {
-                    throw new Exception($"Project: {name} already exists.");                    
+                    throw new Exception($"Project: {name} already exists.");
                 }
                 //Determine the next project ID
                 int nextProjectID = _projects.Select(p => p.ProjectID).DefaultIfEmpty(0).Max() + 1;
@@ -43,7 +43,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction("Project", project.ProjectID.ToString(), "added");                              
+                _loggerService.LogAction("Project", project.ProjectID.ToString(), "added");
                 //Return true when project added
                 return true;
             }
@@ -61,7 +61,7 @@ namespace ProjectManagementApp
                 //Get data
                 _projects = _projectRepository.GetAll();
                 //Find project by ID
-                var project = GetProjectById(projectID);                
+                var project = GetProjectById(projectID);
                 //Add team member to project
                 project.AddTeamMember(username);
                 //Save changes
@@ -86,19 +86,19 @@ namespace ProjectManagementApp
                 //Get data
                 _projects = _projectRepository.GetAll();
                 //Find project by ID
-                var project = GetProjectById(projectID);                
+                var project = GetProjectById(projectID);
                 //Update project status
                 project.UpdateStatus(status);
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction("Project", project.ProjectID.ToString(), $"Status Update to: {status}");                
+                _loggerService.LogAction("Project", project.ProjectID.ToString(), $"Status Update to: {status}");
                 //Return true when status updated
                 return true;
             }
             catch (Exception ex)
             {
-                throw new Exception($"\n  Error Update Project Status: {ex.Message}");                
+                throw new Exception($"\n  Error Update Project Status: {ex.Message}");
             }
         }
 
@@ -111,17 +111,17 @@ namespace ProjectManagementApp
                 //Get data
                 _projects = _projectRepository.GetAll();
                 //Find and assign project to delete
-                var project = GetProjectById(projectID);                
+                var project = GetProjectById(projectID);
                 //Delete project
                 _projects.Remove(project);
                 //Save changes
                 _projectRepository.SaveAll(_projects);
                 //Log action
-                _loggerService.LogAction("Project", project.ProjectID.ToString(), "Deleted");                
+                _loggerService.LogAction("Project", project.ProjectID.ToString(), "Deleted");
                 //Return true when project deleted
                 return true;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception($"\n  Error Delete Project: {ex.Message}");
             }
@@ -151,9 +151,9 @@ namespace ProjectManagementApp
         public IReadOnlyList<Project> GetProjectsByUser(string username)
         {
             try
-            {                
-                //Filter projects by manager                
-                return _projects.Where(p => p.Manager.Equals(username, StringComparison.OrdinalIgnoreCase))
+            {
+                //Filter projects by team members
+                return _projects.Where(p => p.TeamMembers.Contains(username, StringComparer.OrdinalIgnoreCase))
                                 .ToList().AsReadOnly();
             }
             catch (Exception ex)
@@ -191,8 +191,6 @@ namespace ProjectManagementApp
             }
         }
 
-
-
         //Get all projects, return as read-only list
         public IReadOnlyList<Project> GetAllProjects()
         {
@@ -203,6 +201,22 @@ namespace ProjectManagementApp
             catch (Exception ex)
             {
                 throw new Exception($"\n  Error Get All Projects: {ex.Message}");
+            }
+        }
+
+        //Get project team members
+        public IReadOnlyList<string> GetProjectTeamMemebrs(int projectID)
+        {
+            try
+            {
+                //Find project by ID
+                var project = GetProjectById(projectID);
+                //Return team members
+                return project.TeamMembers.AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error Get Project Team Members: {ex.Message}");
             }
         }
     }

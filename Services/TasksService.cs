@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectManagementApp
 {
@@ -25,7 +26,7 @@ namespace ProjectManagementApp
         }
 
         //Add task to project
-        public bool AddTask(string title, string description, string assignedTo, int projectID)
+        public bool AddTask(TaskType taskType, string title, string description, string assignedTo, int projectID)
         {
             try
             {
@@ -36,7 +37,35 @@ namespace ProjectManagementApp
                                        .Select(t => int.Parse(t.TaskID
                                        .Split('.')[0])).DefaultIfEmpty(0).Max() + 1;
                 //Create new task
-                var task = new Task(nextTaskID, title, description, assignedTo, projectID);
+                //var task = new Task(nextTaskID, title, description, assignedTo, projectID);
+
+                //Create new task based on task type
+                Task task = null;
+                switch (taskType)
+                {
+                    case TaskType.Epic:
+                        task = new TaskEpic(nextTaskID, title, description, assignedTo, projectID);
+                        break;
+                    case TaskType.Idea:
+                        task = new TaskIdea(nextTaskID, title, description, assignedTo, projectID);
+                        break;
+                    case TaskType.Bug:
+                        task = new TaskBug(nextTaskID, title, description, assignedTo, projectID);
+                        break;
+                    case TaskType.Feature:
+                        task = new TaskFeature(nextTaskID, title, description, assignedTo, projectID);
+                        break;
+                    case TaskType.Improvement:
+                        task = new TaskEpic(nextTaskID, title, description, assignedTo, projectID);
+                        break;
+                    case TaskType.Documentation:
+                        task = new TaskEpic(nextTaskID, title, description, assignedTo, projectID);
+
+                        break;
+                    default:
+                        throw new ArgumentException("\n  Invalid task type");
+                }
+
                 //Add task to tasks list
                 _tasks.Add(task);
                 //Save changes to tasks
@@ -49,6 +78,37 @@ namespace ProjectManagementApp
             catch (Exception ex)
             {
                 throw new Exception($"\n  Error Add Task: {ex.Message}");
+            }
+        }
+
+        //Assign task to epic
+        public bool AssignTaskToEpic(string taskId, string epicId)
+        {
+            try
+            {
+                //Get data
+                _tasks = _taskRepository.GetAll();
+                //Find task by ID
+                var task = GetTaskById(taskId);
+                //Find epic by ID
+                var epic = GetEpicById(epicId);
+                //Check if they belong to the same project
+                if (task.ProjectID != epic.ProjectID)
+                {
+                    throw new Exception("Task and Epic must belong to the same project.");
+                }
+                //Assign task to epic
+                task.AssignToEpic(epicId);
+                //Save changes
+                _taskRepository.SaveAll(_tasks);
+                //Log action
+                _loggerService.LogAction("Task", task.TaskID.ToString(), $"assigned to Epic:{epicId}");
+                //Return true when task assigned to epic
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error Assign Task to Epic: {ex.Message}");
             }
         }
 
@@ -118,9 +178,14 @@ namespace ProjectManagementApp
                 if (!VerifyOwnership(task.TaskID))
                 {
                     throw new Exception("Only assigned user or a manager can complete the task.");
-                }
+                }               
                 //Complete task
-                task.CompleteTask(_authService.CurrentUsername);
+                if (!task.CompleteTask(_authService.CurrentUsername))
+                {
+                    throw new Exception("Only task with status: InProgress can be completed.");
+                }               
+                //Save changes
+                _taskRepository.SaveAll(_tasks);                
                 //Save changes
                 _taskRepository.SaveAll(_tasks);
                 //Log action
@@ -233,12 +298,31 @@ namespace ProjectManagementApp
             }
         }
 
+        //Get epic by ID
+        public TaskEpic GetEpicById(string epicId)
+        {
+            try
+            {
+                var epic = _tasks.OfType<TaskEpic>().FirstOrDefault(t => t.TaskID == epicId);
+                if (epic == null)
+                {
+                    throw new Exception($"Epic with ID {epicId} not found.");
+                }
+                return epic;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error, get epic by ID: {ex.Message}");
+            }
+        }
+
         //Get user taskss, return as read-only list
         public IReadOnlyList<Task> GetUserTasks(string username)
         {
             try
             {
                 return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.EpicID)  
                              .ThenBy(t => t.Status)
                              .Where(t => t.AssignedTo.Equals(username, StringComparison.OrdinalIgnoreCase))
                              .ToList().AsReadOnly();
@@ -255,6 +339,8 @@ namespace ProjectManagementApp
             try
             {
                 return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.EpicID)
+                             .ThenBy(t => t.TaskID)
                              .ThenBy(t => t.Status)
                              .Where(t => t.ProjectID == projectID)
                              .ToList().AsReadOnly();
@@ -265,12 +351,32 @@ namespace ProjectManagementApp
             }
         }
 
-        //Get tasks by status, return as read-only list
-        public IReadOnlyList<Task> GetProjectTasksByStatus(int projectID, TaskStatus status)
+        //Get Project tasks by user, return as read-only list
+        public IReadOnlyList<Task> GetProjectTasksByUser(int projectID, string username)
         {
             try
             {
-                return _tasks.OrderBy(t => t.ProjectID)                             
+                return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.EpicID)
+                             .ThenBy(t => t.TaskID)
+                             .ThenBy(t => t.Status)
+                             .Where(t => t.ProjectID == projectID && t.AssignedTo.Equals(username, StringComparison.OrdinalIgnoreCase))
+                             .ToList().AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error, get project tasks by user: {ex.Message}");
+            }
+        }
+       
+        //Get tasks by status, return as read-only list
+        public IReadOnlyList<Task> GetProjectTasksByStatus(int projectID, TaskStatus status)
+        {       
+            try
+            {
+                return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.EpicID)
+                             .ThenBy(t => t.TaskID)
                              .Where(t => t.ProjectID == projectID && t.Status == status)
                              .ToList().AsReadOnly();
             }
@@ -280,12 +386,50 @@ namespace ProjectManagementApp
             }
         }
 
+        //Get Project tasks by type, return as read-only list
+        public IReadOnlyList<Task> GetProjectTasksByType(int projectID, TaskType type)
+        {
+            try
+            {
+                return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.EpicID)
+                             .ThenBy(t => t.TaskID)
+                             .Where(t => t.ProjectID == projectID && t.Type == type)
+                             .ToList().AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error, get project tasks by type: {ex.Message}");
+            }
+        }
+
+        //Get Epic with tasks
+        public IReadOnlyList<Task> GetEpicTasks(string epicID)
+        {
+            try
+            {
+                return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.EpicID)
+                             .ThenBy(t => t.Status)
+                             .Where(t => t.EpicID == epicID)
+                             .ToList().AsReadOnly();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"\n  Error, get epic tasks: {ex.Message}");
+            }
+        }        
+
+        
         //Get all tasks, return as read-only list
         public IReadOnlyList<Task> GetAllTasks()
          {            
             try
             {
-                return _tasks.OrderBy(t => t.ProjectID).ThenBy(t => t.Status).ToList().AsReadOnly();
+                return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.EpicID)
+                             .ThenBy(t => t.Status)
+                             .ToList().AsReadOnly();
             }
             catch (Exception ex)
             {
