@@ -1,0 +1,155 @@
+{
+  "$type": "System.Collections.Generic.List`1[[ProjectManagementApp.User, GroupProject]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "ProjectManagementApp.Administrator, GroupProject",
+      "Username": "admin",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "Qb+9geYPHbfgSiSJt/IhfmYQYQnUxFCv3AAwETapkxm4sZCtT7mAlbNY58XjV9/CG0wwRtCbGJg0HDO09vZtZQ=="
+      },
+      "Role": 3
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Darek",
+      "LastName": "Kowalski",
+      "Email": "darek.kowalski@example.com",
+      "Phone": "+353-1-234-5678",
+      "Username": "Darek",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "Qb+9geYPHbfgSiSJt/IhfmYQYQnUxFCv3AAwETapkxm4sZCtT7mAlbNY58XjV9/CG0wwRtCbGJg0HDO09vZtZQ=="
+      },
+      "Role": 0
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Janis",
+      "LastName": "Peterson",
+      "Email": "janis.peterson@example.com",
+      "Phone": "+353-21-345-6789",
+      "Username": "Janis",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "Qb+9geYPHbfgSiSJt/IhfmYQYQnUxFCv3AAwETapkxm4sZCtT7mAlbNY58XjV9/CG0wwRtCbGJg0HDO09vZtZQ=="
+      },
+      "Role": 1
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Tim",
+      "LastName": "Johnson",
+      "Email": "tim.johnson@example.com",
+      "Phone": "+353-87-456-7890",
+      "Username": "Tim",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "Qb+9geYPHbfgSiSJt/IhfmYQYQnUxFCv3AAwETapkxm4sZCtT7mAlbNY58XjV9/CG0wwRtCbGJg0HDO09vZtZQ=="
+      },
+      "Role": 1
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Conor",
+      "LastName": "O'Neill",
+      "Email": "conor.oneill@example.com",
+      "Phone": "+353-1-567-8901",
+      "Username": "Conor",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "Qb+9geYPHbfgSiSJt/IhfmYQYQnUxFCv3AAwETapkxm4sZCtT7mAlbNY58XjV9/CG0wwRtCbGJg0HDO09vZtZQ=="
+      },
+      "Role": 1
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Sean",
+      "LastName": "McCarthy",
+      "Email": "sean.mccarthy@example.com",
+      "Phone": "+353-21-678-9012",
+      "Username": "Sean",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "Qb+9geYPHbfgSiSJt/IhfmYQYQnUxFCv3AAwETapkxm4sZCtT7mAlbNY58XjV9/CG0wwRtCbGJg0HDO09vZtZQ=="
+      },
+      "Role": 0
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Eva",
+      "LastName": "Martinez",
+      "Email": "eva.martinez@example.com",
+      "Phone": "+353-86-789-0123",
+      "Username": "Eva",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "Qb+9geYPHbfgSiSJt/IhfmYQYQnUxFCv3AAwETapkxm4sZCtT7mAlbNY58XjV9/CG0wwRtCbGJg0HDO09vZtZQ=="
+      },
+      "Role": 1
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Email": "john.doe@example.com",
+      "Phone": "+353-1-890-1234",
+      "Username": "John",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "cRiyX11DKgasMVqO/REx1p6JtWm31ecBKO11LCv8X+CQaSoH2a59I8RH101PgpexRnhWajFpog3266QJh1SyEg=="
+      },
+      "Role": 1
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Fred",
+      "LastName": "Williams",
+      "Email": "fred.williams@example.com",
+      "Phone": "+353-87-901-2345",
+      "Username": "Fred",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "cRiyX11DKgasMVqO/REx1p6JtWm31ecBKO11LCv8X+CQaSoH2a59I8RH101PgpexRnhWajFpog3266QJh1SyEg=="
+      },
+      "Role": 0
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Alice",
+      "LastName": "Brown",
+      "Email": "alice.brown@example.com",
+      "Phone": "+353-1-012-3456",
+      "Username": "Alice",
+      "PasswordHash": "42B540C62842A49F60F774A827CBCBDA122BF9B521BB1F5917BE6E1F122E924C98CAF0E5F6C14E2EE9E799820BB0A7031A6010BE6F32A5D9D13102DDCF0788E6",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "cRiyX11DKgasMVqO/REx1p6JtWm31ecBKO11LCv8X+CQaSoH2a59I8RH101PgpexRnhWajFpog3266QJh1SyEg=="
+      },
+      "Role": 0
+    },
+    {
+      "$type": "ProjectManagementApp.TeamMember, GroupProject",
+      "FirstName": "Mary",
+      "LastName": "Davis",
+      "Email": "mary.davis@example.com",
+      "Phone": "+353-21-123-4567",
+      "Username": "Mary",
+      "PasswordHash": "5EB3C245B31F7123D0437198168A65706EBA7B7DA26A5540E5DA0A7BF90A1C8A68C17C6E72CFC38981A5BB1906BAA68EC9DC9C3C55BA0B9CAE6FDC37B2C9D46F",
+      "PasswordSalt": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "cRiyX11DKgasMVqO/REx1p6JtWm31ecBKO11LCv8X+CQaSoH2a59I8RH101PgpexRnhWajFpog3266QJh1SyEg=="
+      },
+      "Role": 1
+    }
+  ]
+}
