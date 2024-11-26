@@ -1,0 +1,1237 @@
+{
+  "$type": "System.Collections.Generic.List`1[[ProjectManagementApp.Task, GroupProject]], System.Private.CoreLib",
+  "$values": [
+ 
+  // Project 1: E-Commerce Platform
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.1",
+    "EpicID": "1.1",
+    "Type": 0,
+    "Title": "Core Platform Development",
+    "Description": "Develop the core functionalities of the e-commerce platform.",
+    "AssignedTo": "Eva",
+    "Status": 1,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.1",
+    "EpicID": "1.1",
+    "Type": 3,
+    "Title": "Payment Gateway Integration",
+    "Description": "Integrate secure payment gateways into the platform.",
+    "AssignedTo": "John",
+    "Status": 2,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.1",
+    "EpicID": "1.1",
+    "Type": 2,
+    "Title": "Fix Checkout Bug",
+    "Description": "Resolve the bug causing checkout failures.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.1",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Improve UI Design",
+    "Description": "Enhance the user interface for better user experience.",
+    "AssignedTo": "Alice",
+    "Status": 1,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.1",
+    "EpicID": "5.1",
+    "Type": 0,
+    "Title": "Mobile Responsiveness",
+    "Description": "Ensure the platform is responsive across all mobile devices.",
+    "AssignedTo": "Eva",
+    "Status": 0,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.1",
+    "EpicID": "5.1",
+    "Type": 3,
+    "Title": "Responsive Layout Design",
+    "Description": "Design layouts that adapt to different screen sizes.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.1",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "API Documentation",
+    "Description": "Document all APIs for developer reference.",
+    "AssignedTo": "John",
+    "Status": 2,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.1",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Loyalty Program Feature",
+    "Description": "Implement a loyalty program to reward repeat customers.",
+    "AssignedTo": "Alice",
+    "Status": 1,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.1",
+    "EpicID": "1.1",
+    "Type": 4,
+    "Title": "Optimize Database Performance",
+    "Description": "Enhance database queries for faster response times.",
+    "AssignedTo": "Eva",
+    "Status": 2,
+    "ProjectID": 1
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.1",
+    "EpicID": "5.1",
+    "Type": 2,
+    "Title": "Fix Mobile Layout Bug",
+    "Description": "Resolve layout issues on mobile devices.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 1
+  },
+
+  // Project 2: Mobile Banking App
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.2",
+    "EpicID": "1.2",
+    "Type": 0,
+    "Title": "User Authentication Module",
+    "Description": "Develop secure user authentication mechanisms.",
+    "AssignedTo": "Janis",
+    "Status": 1,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.2",
+    "EpicID": "1.2",
+    "Type": 3,
+    "Title": "Implement Two-Factor Authentication",
+    "Description": "Add two-factor authentication for enhanced security.",
+    "AssignedTo": "Tim",
+    "Status": 2,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.2",
+    "EpicID": "1.2",
+    "Type": 2,
+    "Title": "Fix Login Timeout Issue",
+    "Description": "Resolve the issue causing login sessions to timeout prematurely.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.2",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance User Dashboard",
+    "Description": "Improve the user dashboard for better accessibility.",
+    "AssignedTo": "Mary",
+    "Status": 1,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.2",
+    "EpicID": "5.2",
+    "Type": 0,
+    "Title": "Transaction Processing",
+    "Description": "Develop efficient transaction processing systems.",
+    "AssignedTo": "Janis",
+    "Status": 0,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.2",
+    "EpicID": "5.2",
+    "Type": 3,
+    "Title": "Real-Time Transaction Tracking",
+    "Description": "Implement real-time tracking of user transactions.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.2",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "API Integration Guide",
+    "Description": "Create documentation for API integrations.",
+    "AssignedTo": "Fred",
+    "Status": 2,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.2",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Budget Management Feature",
+    "Description": "Add features for users to manage their budgets effectively.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.2",
+    "EpicID": "1.2",
+    "Type": 4,
+    "Title": "Optimize Authentication Flow",
+    "Description": "Streamline the authentication process for faster logins.",
+    "AssignedTo": "Janis",
+    "Status": 2,
+    "ProjectID": 2
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.2",
+    "EpicID": "5.2",
+    "Type": 2,
+    "Title": "Fix Transaction Delay Bug",
+    "Description": "Resolve delays in transaction processing.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 2
+  },
+
+  // Project 3: AI Chatbot Integration
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.3",
+    "EpicID": "1.3",
+    "Type": 0,
+    "Title": "Chatbot Framework Setup",
+    "Description": "Set up the foundational framework for the AI chatbot.",
+    "AssignedTo": "Tim",
+    "Status": 1,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.3",
+    "EpicID": "1.3",
+    "Type": 3,
+    "Title": "Natural Language Processing Integration",
+    "Description": "Integrate NLP capabilities for better understanding of user queries.",
+    "AssignedTo": "Conor",
+    "Status": 2,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.3",
+    "EpicID": "1.3",
+    "Type": 2,
+    "Title": "Fix Response Time Issue",
+    "Description": "Improve the chatbot's response time to user inputs.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.3",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance Conversation Flow",
+    "Description": "Improve the flow of conversations for a more natural interaction.",
+    "AssignedTo": "Sean",
+    "Status": 1,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.3",
+    "EpicID": "5.3",
+    "Type": 0,
+    "Title": "Multilingual Support",
+    "Description": "Enable the chatbot to understand and respond in multiple languages.",
+    "AssignedTo": "Tim",
+    "Status": 0,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.3",
+    "EpicID": "5.3",
+    "Type": 3,
+    "Title": "Language Detection Feature",
+    "Description": "Implement automatic language detection for user inputs.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.3",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "Chatbot Usage Documentation",
+    "Description": "Create comprehensive documentation for chatbot usage and features.",
+    "AssignedTo": "Fred",
+    "Status": 2,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.3",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "User Feedback Collection",
+    "Description": "Implement mechanisms to collect user feedback on chatbot interactions.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.3",
+    "EpicID": "1.3",
+    "Type": 4,
+    "Title": "Optimize NLP Algorithms",
+    "Description": "Enhance NLP algorithms for better accuracy in understanding user intents.",
+    "AssignedTo": "Tim",
+    "Status": 2,
+    "ProjectID": 3
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.3",
+    "EpicID": "5.3",
+    "Type": 2,
+    "Title": "Fix Multilingual Response Bug",
+    "Description": "Resolve issues with responses in non-default languages.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 3
+  },
+
+  // Project 4: Cloud Migration
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.4",
+    "EpicID": "1.4",
+    "Type": 0,
+    "Title": "Infrastructure Assessment",
+    "Description": "Assess current infrastructure for cloud migration readiness.",
+    "AssignedTo": "Conor",
+    "Status": 3,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.4",
+    "EpicID": "1.4",
+    "Type": 3,
+    "Title": "Select Cloud Provider",
+    "Description": "Evaluate and select an appropriate cloud service provider.",
+    "AssignedTo": "Darek",
+    "Status": 3,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.4",
+    "EpicID": "1.4",
+    "Type": 2,
+    "Title": "Fix Migration Script Errors",
+    "Description": "Resolve errors in migration scripts causing data inconsistencies.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.4",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Data Backup Strategy",
+    "Description": "Develop a robust data backup strategy during migration.",
+    "AssignedTo": "John",
+    "Status": 3,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.4",
+    "EpicID": "5.4",
+    "Type": 0,
+    "Title": "Server Configuration",
+    "Description": "Configure servers in the new cloud environment.",
+    "AssignedTo": "Conor",
+    "Status": 3,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.4",
+    "EpicID": "5.4",
+    "Type": 3,
+    "Title": "Deploy Virtual Machines",
+    "Description": "Deploy and configure virtual machines on the cloud platform.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.4",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "Migration Documentation",
+    "Description": "Document the migration process and configurations.",
+    "AssignedTo": "Eva",
+    "Status": 3,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.4",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Automate Deployment",
+    "Description": "Implement automation for deployment processes in the cloud.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.4",
+    "EpicID": "1.4",
+    "Type": 4,
+    "Title": "Optimize Resource Allocation",
+    "Description": "Ensure optimal allocation of cloud resources for efficiency.",
+    "AssignedTo": "Conor",
+    "Status": 3,
+    "ProjectID": 4
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.4",
+    "EpicID": "5.4",
+    "Type": 2,
+    "Title": "Fix VM Deployment Bug",
+    "Description": "Resolve issues preventing virtual machines from deploying correctly.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 4
+  },
+
+  // Project 5: Inventory Management System
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.5",
+    "EpicID": "1.5",
+    "Type": 0,
+    "Title": "Inventory Database Design",
+    "Description": "Design the database schema for inventory management.",
+    "AssignedTo": "Sean",
+    "Status": 1,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.5",
+    "EpicID": "1.5",
+    "Type": 3,
+    "Title": "Barcode Scanning Feature",
+    "Description": "Implement barcode scanning for inventory tracking.",
+    "AssignedTo": "Janis",
+    "Status": 2,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.5",
+    "EpicID": "1.5",
+    "Type": 2,
+    "Title": "Fix Stock Level Calculation Bug",
+    "Description": "Resolve incorrect stock level calculations in the system.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.5",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "User Access Controls",
+    "Description": "Develop user roles and access controls for the system.",
+    "AssignedTo": "Mary",
+    "Status": 1,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.5",
+    "EpicID": "5.5",
+    "Type": 0,
+    "Title": "Reporting Module",
+    "Description": "Create reporting tools for inventory analytics.",
+    "AssignedTo": "Sean",
+    "Status": 1,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.5",
+    "EpicID": "5.5",
+    "Type": 3,
+    "Title": "Generate Sales Reports",
+    "Description": "Implement functionality to generate sales and inventory reports.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.5",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "System Documentation",
+    "Description": "Document all system functionalities and user guides.",
+    "AssignedTo": "Alice",
+    "Status": 2,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.5",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Supplier Management Feature",
+    "Description": "Add features to manage supplier information and orders.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.5",
+    "EpicID": "1.5",
+    "Type": 4,
+    "Title": "Optimize Inventory Queries",
+    "Description": "Enhance database queries for faster inventory data retrieval.",
+    "AssignedTo": "Sean",
+    "Status": 2,
+    "ProjectID": 5
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.5",
+    "EpicID": "5.5",
+    "Type": 2,
+    "Title": "Fix Reporting Module Bug",
+    "Description": "Resolve issues with report generation inaccuracies.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 5
+  },
+
+  // Project 6: HR Portal Development
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.6",
+    "EpicID": "1.6",
+    "Type": 0,
+    "Title": "Employee Database Setup",
+    "Description": "Set up the employee database for the HR portal.",
+    "AssignedTo": "Darek",
+    "Status": 2,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.6",
+    "EpicID": "1.6",
+    "Type": 3,
+    "Title": "Recruitment Module",
+    "Description": "Develop the recruitment and applicant tracking module.",
+    "AssignedTo": "Tim",
+    "Status": 2,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.6",
+    "EpicID": "1.6",
+    "Type": 2,
+    "Title": "Fix Payroll Calculation Bug",
+    "Description": "Resolve errors in payroll calculations.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.6",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance Employee Self-Service",
+    "Description": "Improve the self-service features for employees.",
+    "AssignedTo": "Sean",
+    "Status": 2,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.6",
+    "EpicID": "5.6",
+    "Type": 0,
+    "Title": "Performance Management",
+    "Description": "Develop tools for employee performance tracking and reviews.",
+    "AssignedTo": "Darek",
+    "Status": 2,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.6",
+    "EpicID": "5.6",
+    "Type": 3,
+    "Title": "Review Feedback System",
+    "Description": "Implement a system for collecting and managing performance feedback.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.6",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "HR Portal Documentation",
+    "Description": "Document all features and user guides for the HR portal.",
+    "AssignedTo": "Alice",
+    "Status": 2,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.6",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Employee Onboarding Feature",
+    "Description": "Add features to streamline the employee onboarding process.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.6",
+    "EpicID": "1.6",
+    "Type": 4,
+    "Title": "Optimize Recruitment Queries",
+    "Description": "Enhance database queries for faster recruitment data retrieval.",
+    "AssignedTo": "Darek",
+    "Status": 2,
+    "ProjectID": 6
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.6",
+    "EpicID": "5.6",
+    "Type": 2,
+    "Title": "Fix Performance Tracking Bug",
+    "Description": "Resolve issues with performance tracking metrics.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 6
+  },
+
+  // Project 7: Data Analytics Dashboard
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.7",
+    "EpicID": "1.7",
+    "Type": 0,
+    "Title": "Dashboard Framework Setup",
+    "Description": "Set up the foundational framework for the analytics dashboard.",
+    "AssignedTo": "Janis",
+    "Status": 0,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.7",
+    "EpicID": "1.7",
+    "Type": 3,
+    "Title": "Integrate Data Sources",
+    "Description": "Connect various data sources to the dashboard.",
+    "AssignedTo": "Conor",
+    "Status": 0,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.7",
+    "EpicID": "1.7",
+    "Type": 2,
+    "Title": "Fix Data Sync Issue",
+    "Description": "Resolve issues with data synchronization between sources.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.7",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance Visualization Tools",
+    "Description": "Improve the data visualization tools for better insights.",
+    "AssignedTo": "Eva",
+    "Status": 1,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.7",
+    "EpicID": "5.7",
+    "Type": 0,
+    "Title": "Real-Time Data Processing",
+    "Description": "Implement real-time data processing capabilities.",
+    "AssignedTo": "Janis",
+    "Status": 0,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.7",
+    "EpicID": "5.7",
+    "Type": 3,
+    "Title": "Live Data Feed Integration",
+    "Description": "Integrate live data feeds into the dashboard.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.7",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "Dashboard User Guide",
+    "Description": "Create a user guide for navigating and utilizing the dashboard.",
+    "AssignedTo": "John",
+    "Status": 2,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.7",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Custom Report Generation",
+    "Description": "Add functionality for users to generate custom reports.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.7",
+    "EpicID": "1.7",
+    "Type": 4,
+    "Title": "Optimize Data Queries",
+    "Description": "Enhance data queries for faster dashboard load times.",
+    "AssignedTo": "Janis",
+    "Status": 2,
+    "ProjectID": 7
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.7",
+    "EpicID": "5.7",
+    "Type": 2,
+    "Title": "Fix Real-Time Processing Bug",
+    "Description": "Resolve issues with real-time data processing.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 7
+  },
+
+  // Project 8: Cybersecurity Enhancement
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.8",
+    "EpicID": "1.8",
+    "Type": 0,
+    "Title": "Security Audit",
+    "Description": "Conduct a comprehensive security audit of existing systems.",
+    "AssignedTo": "Tim",
+    "Status": 3,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.8",
+    "EpicID": "1.8",
+    "Type": 3,
+    "Title": "Implement Firewalls",
+    "Description": "Set up advanced firewall systems to protect against external threats.",
+    "AssignedTo": "Darek",
+    "Status": 3,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.8",
+    "EpicID": "1.8",
+    "Type": 2,
+    "Title": "Fix Intrusion Detection Bug",
+    "Description": "Resolve issues with the intrusion detection system falsely flagging activities.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.8",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance Encryption Standards",
+    "Description": "Upgrade encryption protocols to the latest standards.",
+    "AssignedTo": "Fred",
+    "Status": 3,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.8",
+    "EpicID": "5.8",
+    "Type": 0,
+    "Title": "User Access Monitoring",
+    "Description": "Implement monitoring tools for tracking user access and activities.",
+    "AssignedTo": "Tim",
+    "Status": 3,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.8",
+    "EpicID": "5.8",
+    "Type": 3,
+    "Title": "Set Up Access Logs",
+    "Description": "Establish comprehensive logging for all user access events.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.8",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "Cybersecurity Policies Documentation",
+    "Description": "Document all cybersecurity policies and procedures.",
+    "AssignedTo": "Alice",
+    "Status": 3,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.8",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Phishing Simulation Module",
+    "Description": "Develop a module to simulate phishing attacks for training purposes.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.8",
+    "EpicID": "1.8",
+    "Type": 4,
+    "Title": "Optimize Firewall Rules",
+    "Description": "Refine firewall rules to reduce false positives and enhance security.",
+    "AssignedTo": "Tim",
+    "Status": 3,
+    "ProjectID": 8
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.8",
+    "EpicID": "5.8",
+    "Type": 2,
+    "Title": "Fix Access Monitoring Bug",
+    "Description": "Resolve issues with inaccurate access monitoring logs.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 8
+  },
+
+  // Project 9: CRM System Upgrade
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.9",
+    "EpicID": "1.9",
+    "Type": 0,
+    "Title": "CRM Database Upgrade",
+    "Description": "Upgrade the CRM database to support new features.",
+    "AssignedTo": "Conor",
+    "Status": 1,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.9",
+    "EpicID": "1.9",
+    "Type": 3,
+    "Title": "Integrate Marketing Tools",
+    "Description": "Integrate existing marketing tools with the CRM system.",
+    "AssignedTo": "Janis",
+    "Status": 1,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.9",
+    "EpicID": "1.9",
+    "Type": 2,
+    "Title": "Fix Lead Tracking Bug",
+    "Description": "Resolve issues with lead tracking functionalities.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.9",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance Customer Segmentation",
+    "Description": "Improve customer segmentation for targeted marketing.",
+    "AssignedTo": "Sean",
+    "Status": 1,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.9",
+    "EpicID": "5.9",
+    "Type": 0,
+    "Title": "Sales Pipeline Management",
+    "Description": "Develop tools for managing and visualizing the sales pipeline.",
+    "AssignedTo": "Conor",
+    "Status": 1,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.9",
+    "EpicID": "5.9",
+    "Type": 3,
+    "Title": "Implement Deal Tracking",
+    "Description": "Add functionalities to track deals through different stages.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.9",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "CRM Upgrade Documentation",
+    "Description": "Document all upgrades and new features in the CRM system.",
+    "AssignedTo": "Mary",
+    "Status": 1,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.9",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Customer Feedback Integration",
+    "Description": "Integrate customer feedback mechanisms into the CRM.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.9",
+    "EpicID": "1.9",
+    "Type": 4,
+    "Title": "Optimize CRM Queries",
+    "Description": "Enhance CRM database queries for faster data retrieval.",
+    "AssignedTo": "Conor",
+    "Status": 1,
+    "ProjectID": 9
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.9",
+    "EpicID": "5.9",
+    "Type": 2,
+    "Title": "Fix Sales Tracking Bug",
+    "Description": "Resolve issues with sales tracking and reporting.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 9
+  },
+
+  // Project 10: Blockchain Integration
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.10",
+    "EpicID": "1.10",
+    "Type": 0,
+    "Title": "Blockchain Framework Selection",
+    "Description": "Select an appropriate blockchain framework for integration.",
+    "AssignedTo": "Sean",
+    "Status": 2,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.10",
+    "EpicID": "1.10",
+    "Type": 3,
+    "Title": "Smart Contract Development",
+    "Description": "Develop smart contracts for transaction automation.",
+    "AssignedTo": "Tim",
+    "Status": 2,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.10",
+    "EpicID": "1.10",
+    "Type": 2,
+    "Title": "Fix Blockchain Sync Issue",
+    "Description": "Resolve synchronization issues between blockchain nodes.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.10",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance Data Security",
+    "Description": "Implement additional security measures for blockchain data.",
+    "AssignedTo": "Eva",
+    "Status": 2,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.10",
+    "EpicID": "5.10",
+    "Type": 0,
+    "Title": "Blockchain API Development",
+    "Description": "Develop APIs for interacting with the blockchain system.",
+    "AssignedTo": "Sean",
+    "Status": 2,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.10",
+    "EpicID": "5.10",
+    "Type": 3,
+    "Title": "API Endpoint Creation",
+    "Description": "Create API endpoints for blockchain transactions.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.10",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "Blockchain Integration Documentation",
+    "Description": "Document the blockchain integration processes and APIs.",
+    "AssignedTo": "John",
+    "Status": 2,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.10",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Decentralized Data Storage",
+    "Description": "Implement decentralized data storage solutions.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.10",
+    "EpicID": "1.10",
+    "Type": 4,
+    "Title": "Optimize Smart Contracts",
+    "Description": "Enhance smart contracts for efficiency and security.",
+    "AssignedTo": "Sean",
+    "Status": 2,
+    "ProjectID": 10
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.10",
+    "EpicID": "5.10",
+    "Type": 2,
+    "Title": "Fix API Response Bug",
+    "Description": "Resolve issues with API responses in blockchain integration.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 10
+  },
+
+  // Project 11: Virtual Reality Training Module
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "1.11",
+    "EpicID": "1.11",
+    "Type": 0,
+    "Title": "VR Environment Design",
+    "Description": "Design the virtual environments for training modules.",
+    "AssignedTo": "Darek",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "2.11",
+    "EpicID": "1.11",
+    "Type": 3,
+    "Title": "3D Model Development",
+    "Description": "Create 3D models for various training scenarios.",
+    "AssignedTo": "Conor",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "3.11",
+    "EpicID": "1.11",
+    "Type": 2,
+    "Title": "Fix VR Interaction Bug",
+    "Description": "Resolve issues with user interactions within the VR environment.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "4.11",
+    "EpicID": null,
+    "Type": 4,
+    "Title": "Enhance User Navigation",
+    "Description": "Improve navigation controls for a smoother user experience.",
+    "AssignedTo": "Mary",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "5.11",
+    "EpicID": "5.11",
+    "Type": 0,
+    "Title": "Simulation Scenario Development",
+    "Description": "Develop various simulation scenarios for training purposes.",
+    "AssignedTo": "Darek",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "6.11",
+    "EpicID": "5.11",
+    "Type": 3,
+    "Title": "Integrate Feedback Mechanism",
+    "Description": "Add mechanisms to collect user feedback within the VR modules.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "7.11",
+    "EpicID": null,
+    "Type": 5,
+    "Title": "VR Training Documentation",
+    "Description": "Document all VR training modules and user guides.",
+    "AssignedTo": "Fred",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "8.11",
+    "EpicID": null,
+    "Type": 1,
+    "Title": "Real-Time Performance Tracking",
+    "Description": "Implement real-time tracking of user performance within VR modules.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "9.11",
+    "EpicID": "1.11",
+    "Type": 4,
+    "Title": "Optimize VR Rendering",
+    "Description": "Enhance rendering performance for smoother VR experiences.",
+    "AssignedTo": "Darek",
+    "Status": 0,
+    "ProjectID": 11
+  },
+  {
+    "$type": "ProjectManagementApp.TaskFeature, GroupProject",
+    "TaskID": "10.11",
+    "EpicID": "5.11",
+    "Type": 2,
+    "Title": "Fix Feedback Integration Bug",
+    "Description": "Resolve issues with the feedback collection system in VR modules.",
+    "AssignedTo": "none",
+    "Status": 0,
+    "ProjectID": 11
+  }
+]
+ }

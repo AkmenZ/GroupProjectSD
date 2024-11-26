@@ -1,0 +1,166 @@
+{
+  "$type": "System.Collections.Generic.List`1[[ProjectManagementApp.Project, GroupProject]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 1,
+      "Name": "E-Commerce Platform",
+      "Manager": "Darek",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Eva",
+          "John",
+          "Alice",
+          "Darek"
+        ]
+      },
+      "Status": 1,
+      "Description": "Develop a scalable e-commerce platform with secure payment integration."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 2,
+      "Name": "Mobile Banking App",
+      "Manager": "Janis",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Tim",
+          "Mary",
+          "Fred"
+        ]
+      },
+      "Status": 2,
+      "Description": "Create a user-friendly mobile banking application with enhanced security features."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 3,
+      "Name": "AI Chatbot Integration",
+      "Manager": "Tim",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Conor",
+          "Alice",
+          "Sean"
+        ]
+      },
+      "Status": 0,
+      "Description": "Integrate an AI-powered chatbot to improve customer support and engagement."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 5,
+      "Name": "Inventory Management System",
+      "Manager": "Sean",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Janis",
+          "Mary",
+          "Fred"
+        ]
+      },
+      "Status": 1,
+      "Description": "Develop an efficient inventory management system to track stock levels and orders."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 6,
+      "Name": "HR Portal Development",
+      "Manager": "Sean",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Tim",
+          "Alice",
+          "Sean"
+        ]
+      },
+      "Status": 2,
+      "Description": "Build a comprehensive HR portal for employee management, recruitment, and payroll."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 7,
+      "Name": "Data Analytics Dashboard",
+      "Manager": "Gary",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Conor",
+          "Eva",
+          "John"
+        ]
+      },
+      "Status": 0,
+      "Description": "Create a data analytics dashboard to visualize key performance indicators and metrics."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 8,
+      "Name": "Cybersecurity Enhancement",
+      "Manager": "Tim",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Darek",
+          "Mary",
+          "Fred"
+        ]
+      },
+      "Status": 3,
+      "Description": "Implement advanced cybersecurity measures to protect against potential threats and breaches."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 9,
+      "Name": "CRM System Upgrade",
+      "Manager": "Conor",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Janis",
+          "Alice",
+          "Sean"
+        ]
+      },
+      "Status": 1,
+      "Description": "Upgrade the existing CRM system to improve customer relationship management and sales tracking."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 10,
+      "Name": "Blockchain Integration",
+      "Manager": "Sean",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Tim",
+          "Eva",
+          "John"
+        ]
+      },
+      "Status": 2,
+      "Description": "Integrate blockchain technology to enhance data transparency and security across platforms."
+    },
+    {
+      "$type": "ProjectManagementApp.Project, GroupProject",
+      "ProjectID": 11,
+      "Name": "Virtual Reality Training Module",
+      "Manager": "Darek",
+      "TeamMembers": {
+        "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
+        "$values": [
+          "Conor",
+          "Mary",
+          "Fred"
+        ]
+      },
+      "Status": 0,
+      "Description": "Develop a virtual reality module for immersive employee training and skill development."
+    }
+  ]
+}
