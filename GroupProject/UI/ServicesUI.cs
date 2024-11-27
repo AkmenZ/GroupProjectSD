@@ -471,7 +471,7 @@ namespace ProjectManagementApp
                 //Get project tasks
                 var tasks = _tasksService.GetProjectTasks(projectId);
                 //Display tasks
-                Console.WriteLine($"\n  Project ID: {projectId} tasks:");
+                Console.WriteLine($"\n  Project ID: {projectId} Tasks:");
                 PrintTasks(tasks);
             }
             catch (Exception ex)
@@ -757,7 +757,10 @@ namespace ProjectManagementApp
             Console.WriteLine("");
             foreach (var task in tasks)
             {
-                Console.WriteLine($"  Task ID: {task.TaskID} Project ID: {task.ProjectID} Type: {task.Type} Title: {task.Title}, Description: {task.Description}, Status: {task.Status}, Assigned To: {task.AssignedTo}");
+                Console.WriteLine($"\t  { task.Title}");
+                Console.WriteLine($"\t  {task.Type,-14} Assigned To: {task.AssignedTo}");
+                Console.WriteLine($"\t  Task ID: {task.TaskID, -5} Project  ID: {task.ProjectID, -5} Status: {task.Status}");
+                Console.WriteLine($"\t  {task.Description}\n");
             }
         }
 
