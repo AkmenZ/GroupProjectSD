@@ -17,6 +17,10 @@ namespace ProjectManagementApp
 
         //Method to set the UsersManager dependency,
         //Can't inject through constructor as it is initialized after SessionManager
+        public void SetUsersService(IUsersService usersService)
+        {
+            _usersService = usersService ?? throw new ArgumentNullException(nameof(IUsersService));
+        }
 
         //Parameterless constructor
         public AuthService() { }
@@ -25,12 +29,7 @@ namespace ProjectManagementApp
         {
             _passwordService = passwordService ?? throw new ArgumentNullException(nameof(IPasswordService));
         }
-
-        public void SetUsersService(IUsersService usersService)
-        {
-            _usersService = usersService ?? throw new ArgumentNullException(nameof(IUsersService));
-        }
-
+                
         //Login
         public bool Login(string username, string password)
         {
