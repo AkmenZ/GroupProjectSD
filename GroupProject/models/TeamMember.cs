@@ -19,11 +19,11 @@ namespace ProjectManagementApp
         [JsonConstructor]
         public TeamMember() { }
         //Constructor for creating a new TeamMember
-        public TeamMember(string username, string password, string FirsName, string LastName, string Email, string Phone)
+        public TeamMember(string username, string password, string FirstName, string LastName, string Email, string Phone)
             : base(username, password)
         {
             Role = UserRole.TeamMember;
-            FirstName = FirsName;
+            FirstName = FirstName;
             LastName = LastName;
             Email = Email;
             Phone = Phone;
