@@ -78,11 +78,14 @@ namespace ProjectManagementApp
             Console.WriteLine("  [2] Exit");
         }
 
+        // Tim - 17/12/2024 19:46 moving display menu to UI subclasses of Menu
+        
         private static void DisplayMenu(UserRole role)
         {
             Console.WriteLine("\n  Menu:");
             if (role == UserRole.Administrator)
             {
+               //moved to MenuAdministrator.cs - Tim 17/12/2024 20:07
                 Console.WriteLine("  [1] Create New Team Member");
                 Console.WriteLine("  [2] Create New Intern");
                 Console.WriteLine("  [3] Create New Manager");
@@ -95,6 +98,7 @@ namespace ProjectManagementApp
             }
             else if (role == UserRole.Manager)
             {
+                //moved to MenuManager.cs - Tim 17/12/2024 20:07
                 Console.WriteLine("  Project Actions:         View Projects:          View Tasks:                         Task Actions:");
                 Console.WriteLine("  ---------------------------------------------------------------------------------------------------------------");
                 Console.WriteLine("  [1]  Create              [5]  All                [10] All                            [17] Add");

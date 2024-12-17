@@ -9,7 +9,9 @@ namespace ProjectManagementApp
     public abstract class Menu : IMenu
     {
         public abstract void DisplayMenu();
-        public abstract void HandleMenuChoice();
+
+        //added int choice,IServicesUI servicesUI - Tim 17/12/2024 - 21:01
+        public abstract void HandleMenuChoice(int choice, IServicesUI servicesUI);
 
     }
 }
