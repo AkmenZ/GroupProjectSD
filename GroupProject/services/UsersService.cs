@@ -19,7 +19,7 @@ namespace ProjectManagementApp
         {
             _userRepository = userRepository;
             _passwordService = passwordService;
-            _loggerService = loggerService;           
+            _loggerService = loggerService;
             _users = _userRepository.GetAll();
         }
 
@@ -35,6 +35,16 @@ namespace ProjectManagementApp
                 {
                     throw new Exception($"Username: {user.Username} already exists.");
                 }
+
+                if (user is Intern intern)
+                {
+                    bool mentorExists = _users.Any(u => u.Username == intern.MentorUsername);
+                    if (!mentorExists)
+                    {
+                        throw new Exception($"Mentor username: {intern.MentorUsername} doesnt exist!");
+                    }
+                }
+
                 //Generate password hash and salt
                 Byte[] passwordSalt = _passwordService.GenerateSalt();
                 string passwordHash = _passwordService.HashPassword(password, passwordSalt);
@@ -44,7 +54,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction("User", user.Username, "added");                
+                _loggerService.LogAction("User", user.Username, "added");
                 //Return true when added
                 return true;
             }
@@ -66,7 +76,7 @@ namespace ProjectManagementApp
                 //Save changes
                 _userRepository.SaveAll(_users);
                 //Log action
-                _loggerService.LogAction("User", user.Username, "deleted");                
+                _loggerService.LogAction("User", user.Username, "deleted");
                 //Return true when deleted
                 return true;
             }
@@ -149,8 +159,8 @@ namespace ProjectManagementApp
                 if (user == null)
                 {
                     throw new Exception($"Manager with username {username} not found.");
-                }                
-                
+                }
+
                 return user;
             }
             catch (Exception ex)

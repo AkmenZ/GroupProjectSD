@@ -65,18 +65,32 @@ namespace ProjectManagementApp
                 switch (role)
                 {
                     case UserRole.Administrator:
-                        user = new Administrator(username, password);
-                        break;
+                        {
+                            user = new Administrator(username, password);
+                            break;
+                        }
                     case UserRole.Manager:
-                        user = new Manager(username, password);
-                        break;
+                        {
+                            user = new Manager(username, password);
+                            break;
+                        }
                     case UserRole.TeamMember:
-                        string firstName = InputService.ReadValidString("\n  Enter first name: ");
-                        string lastName = InputService.ReadValidString("\n  Enter last name: ");
-                        string email = InputService.ReadValidString("\n  Enter email: ");
-                        string phone = InputService.ReadValidString("\n  Enter phone: ");
-                        user = new TeamMember(username, password, firstName, lastName, email, phone);
-                        break;
+                        {
+                            string firstName = InputService.ReadValidString("\n  Enter first name: ");
+                            string lastName = InputService.ReadValidString("\n  Enter last name: ");
+                            string email = InputService.ReadValidString("\n  Enter email: ");
+                            string phone = InputService.ReadValidString("\n  Enter phone: ");
+                            user = new TeamMember(username, password, firstName, lastName, email, phone);
+                            break;
+                        }
+                    case UserRole.Intern:
+                        {
+                            string firstName = InputService.ReadValidString("\n  Enter first name: ");
+                            string lastName = InputService.ReadValidString("\n  Enter last name: ");
+                            string mentorUsername = InputService.ReadValidString("\n  Enter mentor username: ");
+                            user = new Intern(username, password, firstName, lastName, mentorUsername);
+                            break;
+                        }
                     default:
                         throw new ArgumentException("\n  Invalid user role");
                 }
@@ -262,8 +276,8 @@ namespace ProjectManagementApp
                 else
                 {
                     assignee = _usersService.GetUserByUsername(taskAssigneeUsername).Username.ToString();
-                }                
-                                
+                }
+
                 //Add task
                 if (_tasksService.AddTask(taskType, taskTitle, taskDescription, assignee, project.ProjectID))
                 {
@@ -757,9 +771,9 @@ namespace ProjectManagementApp
             Console.WriteLine("");
             foreach (var task in tasks)
             {
-                Console.WriteLine($"\t  { task.Title}");
+                Console.WriteLine($"\t  {task.Title}");
                 Console.WriteLine($"\t  {task.Type,-14} Assigned To: {task.AssignedTo}");
-                Console.WriteLine($"\t  Task ID: {task.TaskID, -5} Project  ID: {task.ProjectID, -5} Status: {task.Status}");
+                Console.WriteLine($"\t  Task ID: {task.TaskID,-5} Project  ID: {task.ProjectID,-5} Status: {task.Status}");
                 Console.WriteLine($"\t  {task.Description}\n");
             }
         }
@@ -767,11 +781,11 @@ namespace ProjectManagementApp
         public void PrintProjects(IReadOnlyList<Project> projects)
         {
             Console.WriteLine("\n");
-            foreach (var project in projects)            
+            foreach (var project in projects)
             {
-                Console.WriteLine($"\tID: {project.ProjectID, -5} Name: {project.Name,-40} Status: {project.Status,-20} Manager: {project.Manager,-15}");
+                Console.WriteLine($"\tID: {project.ProjectID,-5} Name: {project.Name,-40} Status: {project.Status,-20} Manager: {project.Manager,-15}");
                 Console.WriteLine($"\t          Team Members: {string.Join(", ", project.TeamMembers)}");
-                Console.WriteLine($"\t          Description: {project.Description}\n");                
+                Console.WriteLine($"\t          Description: {project.Description}\n");
             }
         }
 
