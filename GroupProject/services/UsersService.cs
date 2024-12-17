@@ -36,6 +36,7 @@ namespace ProjectManagementApp
                     throw new Exception($"Username: {user.Username} already exists.");
                 }
 
+                // if user is Intern, check that mentor username exists
                 if (user is Intern intern)
                 {
                     bool mentorExists = _users.Any(u => u.Username == intern.MentorUsername);
