@@ -134,6 +134,15 @@ namespace ProjectManagementApp
                 Console.WriteLine("  [6] Change Password");
                 Console.WriteLine("  [0] Logout");
             }
+            else if (role == UserRole.Intern)
+            {                
+                Console.WriteLine("  [1] List Assigned Tasks by Project");
+                Console.WriteLine("  [2] Update Task Status");
+                Console.WriteLine("  [3] Start Task");
+                Console.WriteLine("  [4] Complete Task");
+                Console.WriteLine("  [5] Change Password");
+                Console.WriteLine("  [0] Logout");
+            }
         }
 
         private static void ManageMenuChoice(int choice, UserRole role, IServicesUI servicesUI)
@@ -279,6 +288,33 @@ namespace ProjectManagementApp
                         servicesUI.CompleteTask();
                         break;
                     case 6:
+                        servicesUI.ChangePassword();
+                        break;
+                    case 0:
+                        servicesUI.Logout();
+                        break;
+                    default:
+                        Console.WriteLine("\n  Invalid choice.");
+                        break;
+                }
+            }
+            else if (role == UserRole.Intern)
+            {
+                switch (choice)
+                {   
+                    case 1:
+                        servicesUI.ListUserTasks();
+                        break;
+                    case 2:
+                        servicesUI.UpdateTaskStatus();
+                        break;
+                    case 3:
+                        servicesUI.StartTask();
+                        break;
+                    case 4:
+                        servicesUI.CompleteTask();
+                        break;
+                    case 5:
                         servicesUI.ChangePassword();
                         break;
                     case 0:
