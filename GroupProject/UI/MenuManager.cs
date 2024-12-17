@@ -27,7 +27,88 @@ namespace ProjectManagementApp
         // added int choice,IServicesUI servicesUI from Menu - Tim 17/12/2024 - 21:03
         public override void HandleMenuChoice(int choice, IServicesUI servicesUI)
         {
-            
+            //switch statment copied from Program.cs - Tim 17/12/2024 - 21:38
+            switch (choice)
+            {
+                case 1:
+                    servicesUI.CreateProject();
+                    break;
+                case 2:
+                    servicesUI.AddTeamMemberToProject();
+                    break;
+                case 3:
+                    servicesUI.UpdateProjectStatus();
+                    break;
+                case 4:
+                    servicesUI.DeleteProject();
+                    break;
+                case 5:
+                    servicesUI.ListAllProjects();
+                    break;
+                case 6:
+                    servicesUI.ListProjectsByUser();
+                    break;
+                case 7:
+                    servicesUI.ListProjectsByManager();
+                    break;
+                case 8:
+                    servicesUI.ListProjectsByStatus();
+                    break;
+                case 9:
+                    servicesUI.ListProjectTeamMembers();
+                    break;
+                case 10:
+                    servicesUI.ListAllTasks();
+                    break;
+                case 11:
+                    servicesUI.ListProjectTasks();
+                    break;
+                case 12:
+                    servicesUI.ListTasksByManager();
+                    break;
+                case 13:
+                    servicesUI.ListProjectTasksByStatus();
+                    break;
+                case 14:
+                    servicesUI.ListProjectTasksByType();
+                    break;
+                case 15:
+                    servicesUI.ListProjectTasksByUser();
+                    break;
+                case 16:
+                    servicesUI.ListEpicTasks();
+                    break;
+                case 17:
+                    servicesUI.AddTask();
+                    break;
+                case 18:
+                    servicesUI.AssignUserToTask();
+                    break;
+                case 19:
+                    servicesUI.AssignTaskToEpic();
+                    break;
+                case 20:
+                    servicesUI.StartTask();
+                    break;
+                case 21:
+                    servicesUI.UpdateTaskStatus();
+                    break;
+                case 22:
+                    servicesUI.CompleteTask();
+                    break;
+                case 23:
+                    servicesUI.DeleteTask();
+                    break;
+                case 24:
+                    servicesUI.ChangePassword();
+                    break;
+                case 0:
+                    servicesUI.Logout();
+                    break;
+                default:
+                    Console.WriteLine("  Invalid choice. Please try again.\n");
+                    break;
+            }
         }
     }
 }
