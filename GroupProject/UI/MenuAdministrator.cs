@@ -41,7 +41,7 @@ namespace ProjectManagementApp
                     servicesUI.CreateUser(UserRole.Administrator);
                     break;
                 case 5:
-                    servicesUI.ListAllUsers();
+                    servicesUI.ListAllUsers();  
                     break;
                 case 6:
                     servicesUI.DeleteUser();
