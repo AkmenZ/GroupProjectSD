@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ProjectManagementApp
 {
     public interface IRepository<T> where T : class
-        {
-            List<T> GetAll();
-            void SaveAll(List<T> items);
-        }
+    {
+        List<T> GetAll();
+        void SaveAll(List<T> items);
+        void Add(T item); // Add this method
+    }
 }
