@@ -41,4 +41,13 @@ namespace ProjectManagementApp
         Improvement,
         Documentation
     }
+
+    public enum TaskPriority
+    {
+        Highest,
+        High,
+        Medium,
+        Low,
+        Lowest
+    }
 }

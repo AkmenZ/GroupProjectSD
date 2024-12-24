@@ -11,8 +11,8 @@ namespace ProjectManagementApp.Models
         //Paramterless constructor for JSON serialization
         public TaskDocumentation() { }
         //Constructor for creating TaskDocumentation
-        public TaskDocumentation(int nextTaskID, string title, string description, string assignedTo, int projectID)
-            : base(nextTaskID, title, description, assignedTo, projectID)
+        public TaskDocumentation(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID)
+            : base(nextTaskID, title, description, priority, assignedTo, projectID)
         {
             Type = TaskType.Documentation;
         }

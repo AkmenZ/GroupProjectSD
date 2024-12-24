@@ -11,8 +11,8 @@ namespace ProjectManagementApp
         //Parameterless constructor for JSON serialization
         public TaskBug() { }
         //Constructor for creating TaskBug
-        public TaskBug(int nextTaskID, string title, string description, string assignedTo, int projectID)
-            : base(nextTaskID, title, description, assignedTo, projectID)
+        public TaskBug(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID)
+            : base(nextTaskID, title, description, priority, assignedTo, projectID)
         {
             Type = TaskType.Bug;
         }

@@ -9,6 +9,7 @@ namespace ProjectManagementApp
         string EpicID{ get; }
         string Title { get; }
         string Description { get; }
+        TaskPriority Priority { get; }
         string AssignedTo { get; }
         TaskStatus Status { get; }
         int ProjectID { get; }

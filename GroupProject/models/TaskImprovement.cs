@@ -11,8 +11,8 @@ namespace ProjectManagementApp
         //Paramterless constructor for JSON serialization
         public TaskImprovement() { }
         //Constructor for creating TaskImprovement
-        public TaskImprovement(int nextTaskID, string title, string description, string assignedTo, int projectID)
-            : base(nextTaskID, title, description, assignedTo, projectID)
+        public TaskImprovement(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID)
+            : base(nextTaskID, title, description, priority, assignedTo, projectID)
         {
             Type = TaskType.Improvement;
         }

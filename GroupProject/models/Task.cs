@@ -16,6 +16,8 @@ namespace ProjectManagementApp
         [JsonProperty]
         public string Description { get; protected set; }
         [JsonProperty]
+        public TaskPriority Priority { get; protected set; }
+        [JsonProperty]
         public string AssignedTo { get; protected set; }
         [JsonProperty]
         public TaskStatus Status { get; protected set; }
@@ -26,11 +28,12 @@ namespace ProjectManagementApp
         [JsonConstructor]
         public Task() { }
 
-        public Task(int nextTaskID, string title, string description, string assignedTo, int projectID)
+        public Task(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID)
         {            
             TaskID = $"{nextTaskID}.{projectID}";
             Title = title;
             Description = description;
+            Priority = priority;
             AssignedTo = assignedTo;
             Status = TaskStatus.Backlog;
             ProjectID = projectID;

@@ -265,6 +265,17 @@ namespace ProjectManagementApp
                 string taskTitle = InputService.ReadValidString("\n  Enter task title: ");
                 //Read task description
                 string taskDescription = InputService.ReadValidString("\n  Enter task description: ");
+                //Display task priority                
+                Console.WriteLine("\n  Select task priority:");
+                Console.WriteLine("  [1] Highest");
+                Console.WriteLine("  [2] High");
+                Console.WriteLine("  [3] Medium");
+                Console.WriteLine("  [4] Low");
+                Console.WriteLine("  [5] Lowest");                
+                //Get task priority choice
+                int priorityChoice = InputService.ReadValidInt("\n  Enter choice: ");
+                //Convert choice to TaskPriority enum
+                TaskPriority priority = (TaskPriority)(priorityChoice - 1);
                 //Read assignee ID
                 string taskAssigneeUsername = InputService.ReadValidString("\n  Enter username to assign to a task or 'none': ");
                 //Check if choice is 'none'
@@ -280,7 +291,7 @@ namespace ProjectManagementApp
                 }
 
                 //Add task
-                if (_tasksService.AddTask(taskType, taskTitle, taskDescription, assignee, project.ProjectID))
+                if (_tasksService.AddTask(taskType, taskTitle, taskDescription, priority, assignee, project.ProjectID))
                 {
                     Console.WriteLine($"\n  Task: {taskTitle} added successfully.");
                 }
@@ -775,7 +786,7 @@ namespace ProjectManagementApp
             {
                 Console.WriteLine($"\t  {task.Title}");
                 Console.WriteLine($"\t  {task.Type,-14} Assigned To: {task.AssignedTo}");
-                Console.WriteLine($"\t  Task ID: {task.TaskID,-5} {(task.Type != TaskType.Epic && !string.IsNullOrEmpty(task.EpicID) ? $"Part of Epic: {task.EpicID} " : ""),-20} Project  ID: {task.ProjectID,-5} Status: {task.Status}");
+                Console.WriteLine($"\t  Task ID: {task.TaskID,-5} {(task.Type != TaskType.Epic && !string.IsNullOrEmpty(task.EpicID) ? $"Part of Epic: {task.EpicID} " : ""),-20} Project  ID: {task.ProjectID,-5} Status: {task.Status, -10}  Priority: {task.Priority}");
                 Console.WriteLine($"\t  {task.Description}\n");
             }
         }

@@ -26,7 +26,7 @@ namespace ProjectManagementApp
         }
 
         //Add task to project
-        public bool AddTask(TaskType taskType, string title, string description, string assignedTo, int projectID)
+        public bool AddTask(TaskType taskType, string title, string description, TaskPriority priority, string assignedTo, int projectID)
         {
             try
             {
@@ -35,31 +35,28 @@ namespace ProjectManagementApp
                 //Determine the next task ID for the project
                 int nextTaskID = _tasks.Where(t => t.ProjectID == projectID)
                                        .Select(t => int.Parse(t.TaskID
-                                       .Split('.')[0])).DefaultIfEmpty(0).Max() + 1;
-                //Create new task
-                //var task = new Task(nextTaskID, title, description, assignedTo, projectID);
-
+                                       .Split('.')[0])).DefaultIfEmpty(0).Max() + 1;                
                 //Create new task based on task type
                 Task task = null;
                 switch (taskType)
                 {
                     case TaskType.Epic:
-                        task = new TaskEpic(nextTaskID, title, description, assignedTo, projectID);
+                        task = new TaskEpic(nextTaskID, title, description, priority, assignedTo, projectID);
                         break;
                     case TaskType.Idea:
-                        task = new TaskIdea(nextTaskID, title, description, assignedTo, projectID);
+                        task = new TaskIdea(nextTaskID, title, description, priority, assignedTo, projectID);
                         break;
                     case TaskType.Bug:
-                        task = new TaskBug(nextTaskID, title, description, assignedTo, projectID);
+                        task = new TaskBug(nextTaskID, title, description, priority, assignedTo, projectID);
                         break;
                     case TaskType.Feature:
-                        task = new TaskFeature(nextTaskID, title, description, assignedTo, projectID);
+                        task = new TaskFeature(nextTaskID, title, description, priority, assignedTo, projectID);
                         break;
                     case TaskType.Improvement:
-                        task = new TaskEpic(nextTaskID, title, description, assignedTo, projectID);
+                        task = new TaskEpic(nextTaskID, title, description, priority, assignedTo, projectID);
                         break;
                     case TaskType.Documentation:
-                        task = new TaskEpic(nextTaskID, title, description, assignedTo, projectID);
+                        task = new TaskEpic(nextTaskID, title, description, priority, assignedTo, projectID);
 
                         break;
                     default:
@@ -321,11 +318,21 @@ namespace ProjectManagementApp
         {
             try
             {
-                return _tasks.OrderBy(t => t.ProjectID)
+                return _tasks.GroupBy(t => t.ProjectID)
+                             .SelectMany(projectGroup => projectGroup
+                             .GroupBy(t => t.EpicID)
+                             .SelectMany(epicGroup => epicGroup
+                             .OrderBy(t => t.Status)
+                             .ThenBy(t => t.Priority)))
+                             .Where(t => t.AssignedTo.Equals(username, StringComparison.OrdinalIgnoreCase))
+                             .ToList().AsReadOnly();
+                /*return _tasks.OrderBy(t => t.ProjectID)
+                             .ThenBy(t => t.Priority)
                              .ThenBy(t => t.EpicID)  
                              .ThenBy(t => t.Status)
                              .Where(t => t.AssignedTo.Equals(username, StringComparison.OrdinalIgnoreCase))
                              .ToList().AsReadOnly();
+                */
             }
             catch (Exception ex)
             {

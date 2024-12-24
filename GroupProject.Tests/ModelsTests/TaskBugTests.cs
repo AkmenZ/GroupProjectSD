@@ -9,7 +9,7 @@ namespace ProjectManagementApp.Tests
         public void TaskID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", "assignedTo", 101);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 101);
             var expectedValue = "1.101"; // Expected string format
 
             // Act
@@ -24,7 +24,7 @@ namespace ProjectManagementApp.Tests
         public void Title_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
             var expectedValue = "title";
 
             // Act
@@ -38,7 +38,7 @@ namespace ProjectManagementApp.Tests
         public void Description_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
             var expectedValue = "description";
 
             // Act
@@ -52,7 +52,7 @@ namespace ProjectManagementApp.Tests
         public void AssignedTo_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
             var expectedValue = "assignedTo";
 
             // Act
@@ -66,7 +66,7 @@ namespace ProjectManagementApp.Tests
         public void ProjectID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
             var expectedValue = 1;
 
             // Act
@@ -80,7 +80,7 @@ namespace ProjectManagementApp.Tests
         public void Type_ShouldBeBug()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
 
             // Act
             var actualValue = taskBug.Type;
