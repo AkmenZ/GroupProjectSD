@@ -39,7 +39,7 @@ namespace ProjectManagementApp.Tests
         {
             // Arrange
             var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1);
-            var initialStatus = TaskStatus.ToDo;
+            var initialStatus = TaskStatus.Backlog;
 
             // Act
             var result = task.UpdateStatus(initialStatus); // attempt to update status the the same status
@@ -56,7 +56,7 @@ namespace ProjectManagementApp.Tests
         {
             // Arange
             var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1); // initial task with staus ToDo
-
+            task.UpdateStatus(TaskStatus.ToDo); // update status to ToDo
             // Act
             var result = task.StartTask("Janis"); // call method
 

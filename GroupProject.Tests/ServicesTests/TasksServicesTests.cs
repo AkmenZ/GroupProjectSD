@@ -46,6 +46,7 @@ namespace ProjectManagementApp.Tests
             var taskType = TaskType.Bug;
             var title = "Fix API Bug";
             var description = "Resolve API timeout";
+            var taskPriority = TaskPriority.Medium;
             var assignedTo = "User2";
             var projectID = 1;
 
@@ -82,7 +83,7 @@ namespace ProjectManagementApp.Tests
             var taskId = "1.1";
             _mockAuthService.Setup(auth => auth.CurrentUsername).Returns("User1");
             var task = _mockTasks.First(t => t.TaskID == taskId);
-            task.StartTask("User1"); // Ensure task is started
+            task.UpdateStatus(TaskStatus.InProgress); // Ensure task is started
 
             // Act
             var result = _tasksService.CompleteTask(taskId);
@@ -99,13 +100,14 @@ namespace ProjectManagementApp.Tests
             // Arrange
             var taskId = "1.1";
             _mockAuthService.Setup(auth => auth.CurrentUsername).Returns("User1");
+            var task = _mockTasks.First(t => t.TaskID == taskId);
+            task.UpdateStatus(TaskStatus.ToDo); //Ensure task is in a valid status to be started
 
             // Act
             var result = _tasksService.StartTask(taskId);
 
             // Assert
-            Assert.True(result);
-            var task = _mockTasks.First(t => t.TaskID == taskId);
+            Assert.True(result);            
             Assert.Equal(TaskStatus.InProgress, task.Status);
             _mockLoggerService.Verify(logger => logger.LogAction("Task", taskId, "Started"), Times.Once);
         }
