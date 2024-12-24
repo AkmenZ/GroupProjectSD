@@ -32,7 +32,7 @@ namespace ProjectManagementApp
             Title = title;
             Description = description;
             AssignedTo = assignedTo;
-            Status = TaskStatus.ToDo;
+            Status = TaskStatus.Backlog;
             ProjectID = projectID;
         }
   

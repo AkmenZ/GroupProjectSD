@@ -27,10 +27,11 @@ namespace ProjectManagementApp.Tests
         [Fact]
         public void TaskStatus_ShouldHaveExpectedValues()
         {
-            Assert.Equal(0, (int)TaskStatus.ToDo);
-            Assert.Equal(1, (int)TaskStatus.InProgress);
-            Assert.Equal(2, (int)TaskStatus.Completed);
-            Assert.Equal(3, (int)TaskStatus.Blocked);
+            Assert.Equal(0, (int)TaskStatus.Backlog);
+            Assert.Equal(1, (int)TaskStatus.ToDo);
+            Assert.Equal(2, (int)TaskStatus.InProgress);
+            Assert.Equal(3, (int)TaskStatus.Completed);
+            Assert.Equal(4, (int)TaskStatus.Blocked);
         }
 
         [Fact]

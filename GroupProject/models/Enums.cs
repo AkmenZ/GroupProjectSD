@@ -24,6 +24,7 @@ namespace ProjectManagementApp
     //Different task statuses
     public enum TaskStatus
     {
+        Backlog,
         ToDo,
         InProgress,
         Completed,

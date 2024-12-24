@@ -755,10 +755,11 @@ namespace ProjectManagementApp
         {
             //Display task statuses
             Console.WriteLine("\n  Select task status:");
-            Console.WriteLine("  [1] ToDo");
-            Console.WriteLine("  [2] InProgress");
-            Console.WriteLine("  [3] Completed");
-            Console.WriteLine("  [4] Blocked");
+            Console.WriteLine("  [1] Backlog");
+            Console.WriteLine("  [2] ToDo");
+            Console.WriteLine("  [3] InProgress");
+            Console.WriteLine("  [4] Completed");
+            Console.WriteLine("  [5] Blocked");
             //Get task status choice
             int taskStatusChoice = InputService.ReadValidInt("\n  Enter choice: ");
             //Convert choice to TaskStatus enum
@@ -774,7 +775,7 @@ namespace ProjectManagementApp
             {
                 Console.WriteLine($"\t  {task.Title}");
                 Console.WriteLine($"\t  {task.Type,-14} Assigned To: {task.AssignedTo}");
-                Console.WriteLine($"\t  Task ID: {task.TaskID,-5} Project  ID: {task.ProjectID,-5} Status: {task.Status}");
+                Console.WriteLine($"\t  Task ID: {task.TaskID,-5} {(task.Type != TaskType.Epic && !string.IsNullOrEmpty(task.EpicID) ? $"Part of Epic: {task.EpicID} " : ""),-20} Project  ID: {task.ProjectID,-5} Status: {task.Status}");
                 Console.WriteLine($"\t  {task.Description}\n");
             }
         }
