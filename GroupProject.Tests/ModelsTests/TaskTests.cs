@@ -9,8 +9,8 @@ namespace ProjectManagementApp.Tests
         // since Task class is abstract, we need to create a concrete class for it to test
         private class TestTask : Task
         {
-            public TestTask(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID)
-                : base(nextTaskID, title, description, priority, assignedTo, projectID)
+            public TestTask(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID, double? estimatedStoryPoints, DateTime? dueDate)
+                : base(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate)
             {
             }
         }
@@ -22,7 +22,7 @@ namespace ProjectManagementApp.Tests
         public void UpdateStatus_ShouldUpdateStatusWhenStatusIsDifferent() // makeing test method names according to what they should result in
         {
             // Arrange (set up the test)
-            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1); // initialy created Task object will have ToDo status
+            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1, 7, new DateTime(2025, 12 , 25)); // initialy created Task object will have ToDo status
             var newStatus = TaskStatus.InProgress; // declare new status
 
             // Act (calling testable method)
@@ -38,7 +38,7 @@ namespace ProjectManagementApp.Tests
         public void UpdateStatus_ShouldNotUpdateStatusWhenStatusIsSame()
         {
             // Arrange
-            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1);
+            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1, 9, new DateTime(2026, 01, 01));
             var initialStatus = TaskStatus.Backlog;
 
             // Act
@@ -55,7 +55,7 @@ namespace ProjectManagementApp.Tests
         public void StartTask_ShouldSetStatusToInProgress()
         {
             // Arange
-            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1); // initial task with staus ToDo
+            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1, 4, new DateTime(2025, 12, 31)); // initial task with staus ToDo
             task.UpdateStatus(TaskStatus.ToDo); // update status to ToDo
             // Act
             var result = task.StartTask("Janis"); // call method
@@ -71,7 +71,7 @@ namespace ProjectManagementApp.Tests
         public void AssignUser_ShouldUpdateAssignedUser()
         {
             // Arrange
-            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1);
+            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1, 9, new DateTime(2025, 12, 31));
 
             // Act
             task.AssignUser("Janis");
@@ -86,7 +86,7 @@ namespace ProjectManagementApp.Tests
         public void AssignToEpic_ShouldUpdateEpicID()
         {
             // Arrange
-            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1);
+            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "none", 1, 7, new DateTime(2026, 02, 28));
 
             // Act
             task.AssignToEpic("123"); // call method, pass in test epic id
@@ -101,7 +101,7 @@ namespace ProjectManagementApp.Tests
         public void CompleteTask_ShouldSetStatusToCompleted()
         {
             // Arrange
-            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "Janis", 1);
+            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "Janis", 1, 6, new DateTime(2025, 12, 25));
             task.UpdateStatus(TaskStatus.InProgress); // update the task staus to InProgress
 
             // Act
@@ -116,7 +116,7 @@ namespace ProjectManagementApp.Tests
         public void CompleteTask_ShouldReturnFalseIfNotInProgress()
         {
             // Arrange
-            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "Janis", 1); // initial task status is ToDo
+            var task = new TestTask(1, "Sample Task", "Description", TaskPriority.Medium, "Janis", 1, 6, new DateTime(2025, 12, 25)); // initial task status is ToDo
 
             // Act
             var result = task.CompleteTask("Janis"); // call the method

@@ -23,12 +23,22 @@ namespace ProjectManagementApp
         public TaskStatus Status { get; protected set; }
         [JsonProperty]
         public int ProjectID { get; protected set; }
+        [JsonProperty]
+        public Double? EstimatedStoryPoints { get; private set; }
+        [JsonProperty]
+        public DateTime CreatedAt { get; private set; }
+        [JsonProperty]
+        public DateTime? DueDate { get; private set; }
+        [JsonProperty]
+        public DateTime? CompletedAt { get; private set; }
+        [JsonProperty]
+        public Double? LoggedHours { get; private set; }
 
         //Parameterless constructor for JSON serialization
         [JsonConstructor]
         public Task() { }
 
-        public Task(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID)
+        public Task(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID, double? estimatedStoryPoints, DateTime? dueDate)
         {            
             TaskID = $"{nextTaskID}.{projectID}";
             Title = title;
@@ -37,6 +47,9 @@ namespace ProjectManagementApp
             AssignedTo = assignedTo;
             Status = TaskStatus.Backlog;
             ProjectID = projectID;
+            CreatedAt = DateTime.Now;
+            EstimatedStoryPoints = estimatedStoryPoints;
+            DueDate = dueDate;
         }
   
         //Start task by a user : Itrackable
@@ -99,6 +112,7 @@ namespace ProjectManagementApp
             if (Status == TaskStatus.InProgress)
             {
                 Status = TaskStatus.Completed;
+                CompletedAt = DateTime.Now;
                 return true;
             }
 

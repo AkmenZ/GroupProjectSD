@@ -23,9 +23,9 @@ namespace ProjectManagementApp.Tests
             // Initialize mock tasks
             _mockTasks = new List<Task>
             {
-                new TaskBug(1, "Fix Bug", "Fix login bug", TaskPriority.Medium, "User1", 1),
-                new TaskEpic(2, "Epic Task", "Epic description", TaskPriority.Medium, "User2", 1),
-                new TaskFeature(3, "Feature Task", "Add feature", TaskPriority.Medium, "User3", 1)
+                new TaskBug(1, "Fix Bug", "Fix login bug", TaskPriority.Medium, "User1", 1, 6, new DateTime(2025, 12, 25), "Step 1, step 2, step 3...", "Eva"),
+                new TaskEpic(2, "Epic Task", "Epic description", TaskPriority.Medium, "User2", 1, 6, new DateTime(2025, 12, 25)),
+                new TaskFeature(3, "Feature Task", "Add feature", TaskPriority.Medium, "User3", 1, 6, new DateTime(2025, 12, 25), "Satisfied users")
             };
 
             // Set up repository to return mock tasks
@@ -49,9 +49,11 @@ namespace ProjectManagementApp.Tests
             var taskPriority = TaskPriority.Medium;
             var assignedTo = "User2";
             var projectID = 1;
+            var estimatedStoryPoints = 3;
+            var dueDate = new DateTime(2025, 12, 25);
 
             // Act
-            var result = _tasksService.AddTask(taskType, title, description, TaskPriority.Medium, assignedTo, projectID);
+            var result = _tasksService.AddTask(taskType, title, description, TaskPriority.Medium, assignedTo, projectID, estimatedStoryPoints, dueDate);
 
             // Assert
             Assert.True(result);

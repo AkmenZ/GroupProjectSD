@@ -4,7 +4,7 @@ namespace ProjectManagementApp
 {
     public interface ITasksService
     {
-        bool AddTask(TaskType taskType, string title, string description, TaskPriority priority, string assignedTo, int projectID);
+        bool AddTask(TaskType taskType, string title, string description, TaskPriority priority, string assignedTo, int projectID, double? estimatedStoryPoints, DateTime? dueDate, string stepsToReproduce = null, string acceptanceCriteria = null, string relatedItems = null, string audience = null);
         bool AssignTaskToEpic(string taskId, string epicId);
         bool AssignUserToTask(string taskId, string username);
         bool StartTask(string taskId);

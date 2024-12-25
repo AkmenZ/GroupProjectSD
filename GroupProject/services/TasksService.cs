@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using ProjectManagementApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +28,7 @@ namespace ProjectManagementApp
         }
 
         //Add task to project
-        public bool AddTask(TaskType taskType, string title, string description, TaskPriority priority, string assignedTo, int projectID)
+        public bool AddTask(TaskType taskType, string title, string description, TaskPriority priority, string assignedTo, int projectID, double? estimatedStoryPoints, DateTime? dueDate, string stepsToReproduce = null, string acceptanceCriteria = null, string relatedItems = null, string audience = null)
         {
             try
             {
@@ -35,33 +37,18 @@ namespace ProjectManagementApp
                 //Determine the next task ID for the project
                 int nextTaskID = _tasks.Where(t => t.ProjectID == projectID)
                                        .Select(t => int.Parse(t.TaskID
-                                       .Split('.')[0])).DefaultIfEmpty(0).Max() + 1;                
+                                       .Split('.')[0])).DefaultIfEmpty(0).Max() + 1;
                 //Create new task based on task type
-                Task task = null;
-                switch (taskType)
+                Task task = taskType switch
                 {
-                    case TaskType.Epic:
-                        task = new TaskEpic(nextTaskID, title, description, priority, assignedTo, projectID);
-                        break;
-                    case TaskType.Idea:
-                        task = new TaskIdea(nextTaskID, title, description, priority, assignedTo, projectID);
-                        break;
-                    case TaskType.Bug:
-                        task = new TaskBug(nextTaskID, title, description, priority, assignedTo, projectID);
-                        break;
-                    case TaskType.Feature:
-                        task = new TaskFeature(nextTaskID, title, description, priority, assignedTo, projectID);
-                        break;
-                    case TaskType.Improvement:
-                        task = new TaskEpic(nextTaskID, title, description, priority, assignedTo, projectID);
-                        break;
-                    case TaskType.Documentation:
-                        task = new TaskEpic(nextTaskID, title, description, priority, assignedTo, projectID);
-
-                        break;
-                    default:
-                        throw new ArgumentException("\n  Invalid task type");
-                }
+                    TaskType.Epic => new TaskEpic(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate),
+                    TaskType.Idea => new TaskIdea(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate, _authService.CurrentUsername),
+                    TaskType.Bug => new TaskBug(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate, stepsToReproduce, _authService.CurrentUsername),
+                    TaskType.Feature => new TaskFeature(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate, acceptanceCriteria),
+                    TaskType.Improvement => new TaskImprovement(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate, relatedItems),
+                    TaskType.Documentation => new TaskDocumentation(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate, audience, relatedItems),
+                    _ => throw new ArgumentException("\n  Invalid task type")
+                };
 
                 //Add task to tasks list
                 _tasks.Add(task);

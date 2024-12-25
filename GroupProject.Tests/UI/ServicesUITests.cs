@@ -85,8 +85,8 @@ namespace ProjectManagementApp.Tests
             // Arrange
             var tasks = new List<Task>
             {
-                new TaskBug(1, "Fix Bug", "Fix the login bug", TaskPriority.High, "User1", 1),
-                new TaskFeature(2, "New Feature", "Add new feature", TaskPriority.Low, "User2", 1)
+                new TaskBug(1, "Fix Bug", "Fix the login bug", TaskPriority.High, "User1", 1, 3, new DateTime(2025, 12, 12), "Step 1, step 2", "Johnny"),
+                new TaskFeature(2, "New Feature", "Add new feature", TaskPriority.Low, "User2", 1, 3, new DateTime(2025, 12, 12), "Criteria 1")
             };
 
             _mockTasksService.Setup(service => service.GetAllTasks()).Returns(tasks);

@@ -9,7 +9,7 @@ namespace ProjectManagementApp.Tests
         public void TaskID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 101);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 101, 3, new DateTime(2025, 12, 12), "Step 1, step 2", "Johnny");
             var expectedValue = "1.101"; // Expected string format
 
             // Act
@@ -24,7 +24,7 @@ namespace ProjectManagementApp.Tests
         public void Title_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Step 1, step 2", "Johnny");
             var expectedValue = "title";
 
             // Act
@@ -38,7 +38,7 @@ namespace ProjectManagementApp.Tests
         public void Description_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Step 1, step 2", "Johnny");
             var expectedValue = "description";
 
             // Act
@@ -52,7 +52,7 @@ namespace ProjectManagementApp.Tests
         public void AssignedTo_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Step 1, step 2", "Johnny");
             var expectedValue = "assignedTo";
 
             // Act
@@ -66,7 +66,7 @@ namespace ProjectManagementApp.Tests
         public void ProjectID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Step 1, step 2", "Johnny");
             var expectedValue = 1;
 
             // Act
@@ -80,7 +80,7 @@ namespace ProjectManagementApp.Tests
         public void Type_ShouldBeBug()
         {
             // Arrange
-            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskBug = new TaskBug(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Step 1, step 2", "Johnny");
 
             // Act
             var actualValue = taskBug.Type;

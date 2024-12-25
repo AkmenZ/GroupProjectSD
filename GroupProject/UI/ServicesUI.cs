@@ -218,7 +218,7 @@ namespace ProjectManagementApp
                 int projectId = InputService.ReadValidInt("\n  Enter Project ID: ");
                 //Select project status
                 ProjectStatus status = SelectProjectStatus();
-                //Update task status
+                //Update project status
                 if (_projectsService.UpdateStatus(projectId, status))
                 {
                     Console.WriteLine($"\n  Project: {projectId} status updated to: {status}.");
@@ -289,16 +289,45 @@ namespace ProjectManagementApp
                 {
                     assignee = _usersService.GetUserByUsername(taskAssigneeUsername).Username.ToString();
                 }
+                //Read estimated story points
+                double? estimatedStoryPoints = InputService.ReadValidDouble("\n  Enter estimated story points or leave blank: ");
+                //Read due date
+                DateTime? dueDate = InputService.ReadValidDateTime("\n  Enter due date or leave blank: ");
+                //initialize properties unique to respective task type
+                string stepsToReproduce = null;
+                string reportedBy = null;
+                string acceptanceCriteria = null;
+                string relatedItems = null;
+                string audience = null;
+                string author = null;
 
-                //Add task
-                if (_tasksService.AddTask(taskType, taskTitle, taskDescription, priority, assignee, project.ProjectID))
+                //Read specific properties based on task type
+                switch (taskType)
                 {
-                    Console.WriteLine($"\n  Task: {taskTitle} added successfully.");
+                    case TaskType.Bug:
+                        stepsToReproduce = InputService.ReadValidString("\n  Enter steps to reproduce: ");
+                        break;
+                    case TaskType.Feature:
+                        acceptanceCriteria = InputService.ReadValidString("\n  Enter acceptance criteria: ");
+                        break;
+                    case TaskType.Improvement:
+                        relatedItems = InputService.ReadValidString("\n  Enter related items: ");
+                        break;
+                    case TaskType.Documentation:
+                        relatedItems = InputService.ReadValidString("\n  Enter related items: ");
+                        audience = InputService.ReadValidString("\n  Enter intended audience: ");
+                        break;
                 }
+
+                // Add task
+                if (_tasksService.AddTask(taskType, taskTitle, taskDescription, priority, assignee, project.ProjectID, estimatedStoryPoints, dueDate, stepsToReproduce, acceptanceCriteria, relatedItems, audience))
+                    {
+                        Console.WriteLine($"\n  Task: {taskTitle} added successfully.");
+                    }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.Message);
             }
         }
 

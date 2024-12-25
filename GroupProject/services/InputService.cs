@@ -37,14 +37,24 @@ namespace ProjectManagementApp
         }
 
         //Get valid double
-        public static double ReadValidDouble(string prompt)
+        public static double? ReadValidDouble(string prompt)
         {
 
             double validDouble;
+
             while (true)
             {
                 Console.Write(prompt);
-                if (double.TryParse(Console.ReadLine(), out validDouble))
+                string input = Console.ReadLine();
+
+                //Allow null input
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    return null;
+                }
+
+                //If not null, validate and return double
+                if (double.TryParse(input, out validDouble))
                 {
                     return validDouble;
                 }
@@ -52,21 +62,30 @@ namespace ProjectManagementApp
             }
         }
 
-        //Get valid date & time
-        public static DateTime ReadValidDateTime(string prompt)
+        //Get valid date & time or null
+        public static DateTime? ReadValidDateTime(string prompt)
         {
             DateTime validDateTime;
             while (true)
             {
                 Console.Write(prompt);
-                if (DateTime.TryParseExact(Console.ReadLine(), "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out validDateTime))
+                string input = Console.ReadLine();
+
+                //Allow null input
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    return null;
+                }
+
+                //If not null, validate and return date
+                if (DateTime.TryParseExact(input, "dd-MM-yyyy", null, System.Globalization.DateTimeStyles.None, out validDateTime))
                 {
                     if (validDateTime >= DateTime.Now.Date)
                     {
                         return validDateTime;
                     }
                 }
-                Console.WriteLine("\n  Invalid input. Please enter a valid date [yyyy-mm-dd] that's not in the past.");
+                Console.WriteLine("\n  Invalid input. Please enter a valid date [dd-MM-yyyy] that's not in the past.");
             }
         }
 

@@ -9,7 +9,7 @@ namespace ProjectManagementApp.Tests
         public void TaskID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 101);
+            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 101, 3, new DateTime(2025, 12, 12), "Users", "Feature #1");
             var expectedValue = "1.101"; // Expected string format
 
             // Act
@@ -23,7 +23,7 @@ namespace ProjectManagementApp.Tests
         public void Title_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Users", "Feature #1");
             var expectedValue = "title";
 
             // Act
@@ -37,7 +37,7 @@ namespace ProjectManagementApp.Tests
         public void Description_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Users", "Feature #1");
             var expectedValue = "description";
 
             // Act
@@ -51,7 +51,7 @@ namespace ProjectManagementApp.Tests
         public void AssignedTo_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Users", "Feature #1");
             var expectedValue = "assignedTo";
 
             // Act
@@ -65,7 +65,7 @@ namespace ProjectManagementApp.Tests
         public void ProjectID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Users", "Feature #1");
             var expectedValue = 1;
 
             // Act
@@ -79,7 +79,7 @@ namespace ProjectManagementApp.Tests
         public void Type_ShouldBeDocumentation()
         {
             // Arrange
-            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskDocumentation = new TaskDocumentation(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 3, new DateTime(2025, 12, 12), "Users", "Feature #1");
 
             // Act
             var actualValue = taskDocumentation.Type;

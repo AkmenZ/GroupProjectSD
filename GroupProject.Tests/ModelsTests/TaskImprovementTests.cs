@@ -9,7 +9,7 @@ namespace ProjectManagementApp.Tests
         public void TaskID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 101);
+            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 101, 5, new DateTime(2025, 12, 25), "Feature #131");
             var expectedValue = "1.101"; // Expected string format
 
             // Act
@@ -23,7 +23,7 @@ namespace ProjectManagementApp.Tests
         public void Title_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 15, new DateTime(2025, 12, 25), "Feature #131");
             var expectedValue = "title";
 
             // Act
@@ -37,7 +37,7 @@ namespace ProjectManagementApp.Tests
         public void Description_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 15, new DateTime(2025, 12, 25), "Feature #131");
             var expectedValue = "description";
 
             // Act
@@ -51,7 +51,7 @@ namespace ProjectManagementApp.Tests
         public void AssignedTo_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 15, new DateTime(2025, 12, 25), "Feature #131");
             var expectedValue = "assignedTo";
 
             // Act
@@ -65,7 +65,7 @@ namespace ProjectManagementApp.Tests
         public void ProjectID_ShouldHaveExpectedValue()
         {
             // Arrange
-            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 15, new DateTime(2025, 12, 25), "Feature #131");
             var expectedValue = 1;
 
             // Act
@@ -79,7 +79,7 @@ namespace ProjectManagementApp.Tests
         public void Type_ShouldBeImprovement()
         {
             // Arrange
-            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1);
+            var taskImprovement = new TaskImprovement(1, "title", "description", TaskPriority.Medium, "assignedTo", 1, 15, new DateTime(2025, 12, 25), "Feature #131");
 
             // Act
             var actualValue = taskImprovement.Type;

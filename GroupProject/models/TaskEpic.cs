@@ -11,8 +11,8 @@ namespace ProjectManagementApp
         //Paramterless constructor for JSON serialization
         public TaskEpic() { }
         //Constructor for creating a TaskEpic
-        public TaskEpic(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID)
-            : base(nextTaskID, title, description, priority, assignedTo, projectID)
+        public TaskEpic(int nextTaskID, string title, string description, TaskPriority priority, string assignedTo, int projectID, double? estimatedStoryPoints, DateTime? dueDate)
+            : base(nextTaskID, title, description, priority, assignedTo, projectID, estimatedStoryPoints, dueDate)
         {
             Type = TaskType.Epic;
             EpicID = TaskID;
