@@ -13,7 +13,7 @@ namespace ProjectManagementApp.Tests
             var expectedValue = "John";
 
             // Act
-            intern.GetType().GetProperty("FirstName").SetValue(intern, expectedValue);
+            intern.GetType().BaseType.GetProperty("FirstName").SetValue(intern, expectedValue);
 
             // Assert
             Assert.Equal(expectedValue, intern.FirstName);
@@ -27,7 +27,7 @@ namespace ProjectManagementApp.Tests
             var expectedValue = "Doe";
 
             // Act
-            intern.GetType().GetProperty("LastName").SetValue(intern, expectedValue);
+            intern.GetType().BaseType.GetProperty("LastName").SetValue(intern, expectedValue);
 
             // Assert
             Assert.Equal(expectedValue, intern.LastName);

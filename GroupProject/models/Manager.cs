@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Numerics;
 namespace ProjectManagementApp
 {
     public class Manager : User, IManager
@@ -7,8 +8,8 @@ namespace ProjectManagementApp
         [JsonConstructor]
         public Manager() { }
         //Constructor for creating a new Manager
-        public Manager(string username, string password)
-            : base(username, password)
+        public Manager(string username, string password, string firstName, string lastName, string email, string phone)
+            : base(username, password, firstName, lastName, email, phone)
         {
             Role = UserRole.Manager;
         }

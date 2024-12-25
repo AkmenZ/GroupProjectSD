@@ -9,7 +9,7 @@ public class ManagerTests
         string username = "testmanager";
 
         // Confirming that the Manager constructor assigns the Role property correctly.
-        var manager = new Manager(username, "password123");
+        var manager = new Manager(username, "password123", "Frank", "Zappa", "franky@orckandroll.com", "09876554321");
 
         Assert.Equal(UserRole.Manager, manager.Role);
     }
@@ -17,7 +17,7 @@ public class ManagerTests
     [Fact]
     public void SetHashSalt_ShouldUpdatePasswordHashAndSalt()
     {
-        var manager = new Manager("testmanager", "password123");
+        var manager = new Manager("testmanager", "password123", "Frank", "Zappa", "franky@orckandroll.com", "09876554321");
         string passwordHash = "hashedpassword";
         byte[] passwordSalt = new byte[] { 1, 2, 3, 4, 5 };
 

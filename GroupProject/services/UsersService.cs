@@ -39,7 +39,7 @@ namespace ProjectManagementApp
                 // if user is Intern, check that mentor username exists
                 if (user is Intern intern)
                 {
-                    bool mentorExists = _users.Any(u => u.Username == intern.MentorUsername);
+                    bool mentorExists = _users.Any(u => u.Username.Equals(intern.MentorUsername, StringComparison.OrdinalIgnoreCase));
                     if (!mentorExists)
                     {
                         throw new Exception($"Mentor username: {intern.MentorUsername} doesnt exist!");

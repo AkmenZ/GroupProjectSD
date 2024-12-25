@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using Newtonsoft.Json;
 
 namespace ProjectManagementApp
@@ -14,14 +15,26 @@ namespace ProjectManagementApp
         public byte[] PasswordSalt { get; private set; }
         [JsonProperty]
         public UserRole Role { get; protected set; }
+        [JsonProperty]
+        public string FirstName { get; private set; }
+        [JsonProperty]
+        public string LastName { get; private set; }
+        [JsonProperty]
+        public string Email { get; private set; }
+        [JsonProperty]
+        public string Phone { get; private set; }
 
         //Parameterless constructor for JSON deserialization
         [JsonConstructor]
         public User() { }
        
-        public User(string username, string password)
+        public User(string username, string password, string firstName, string lastName, string email, string phone)
         {
-            Username = username;                   
+            Username = username;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
         }
         
 

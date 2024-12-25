@@ -10,9 +10,13 @@ public class AdministratorTests
     {
         string username = "testadmin";
         string password = "password123";
+        string firstName = "John";
+        string lastName = "Doe";
+        string email = "johndoe@mail.com";
+        string phone = "123456789";
 
         // Ensure the constructor correctly assigns the Administrator role.
-        var admin = new Administrator(username, password);
+        var admin = new Administrator(username, password, firstName, lastName, email, phone);
 
         Assert.Equal(UserRole.Administrator, admin.Role);
     }

@@ -26,8 +26,9 @@ namespace ProjectManagementApp.Tests
             var password = "testpassword";
             var passwordHash = "hashedPassword";
             var salt = new byte[] { 1, 2, 3 };
+            
 
-            var user = new Intern(username, passwordHash, "Test", "User", "mentorUser");
+            var user = new Intern(username, passwordHash, "Alice", "Wonderland", "alice@wonderland.com", "0987654321", "mentorUser");
             user.SetHashSalt(passwordHash, salt);
 
             _mockUsersService
@@ -74,7 +75,7 @@ namespace ProjectManagementApp.Tests
             var passwordHash = "hashedPassword";
             var salt = new byte[] { 1, 2, 3 };
 
-            var user = new Intern(username, passwordHash, "Test", "User", "mentorUser");
+            var user = new Intern(username, passwordHash, "Test", "User", "alice@wonderland.com", "0987654321", "mentorUser");
             user.SetHashSalt(passwordHash, salt);
 
             _mockUsersService
@@ -100,7 +101,7 @@ namespace ProjectManagementApp.Tests
             var passwordHash = "hashedPassword";
             var salt = new byte[] { 1, 2, 3 };
 
-            var user = new Intern(username, passwordHash, "Test", "User", "mentorUser");
+            var user = new Intern(username, passwordHash, "Test", "User", "alice@wonderland.com", "0987654321", "mentorUser");
             user.SetHashSalt(passwordHash, salt);
 
             _mockUsersService

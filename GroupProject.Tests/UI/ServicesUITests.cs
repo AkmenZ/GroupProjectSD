@@ -41,8 +41,12 @@ namespace ProjectManagementApp.Tests
             string passwordHash = "hashedpassword";
             byte[] passwordSalt = new byte[] { 1, 2, 3 };
             UserRole userRole = UserRole.Manager;
+            string firstName = "John";
+            string lastName = "Doe";
+            string email = "johndoe@mail.com";
+            string phone = "123456789";
 
-            var user = new Manager(username, password);
+            var user = new Manager(username, password, firstName, lastName, email, phone);
             user.SetHashSalt(passwordHash, passwordSalt);
 
 

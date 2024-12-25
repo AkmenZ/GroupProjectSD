@@ -60,6 +60,10 @@ namespace ProjectManagementApp
                 //Get username and password
                 string username = InputService.ReadValidString("\n  Enter username: ");
                 string password = InputService.ReadLineMasked();
+                string firstName = InputService.ReadValidString("\n  Enter first name: ");
+                string lastName = InputService.ReadValidString("\n  Enter last name: ");
+                string email = InputService.ReadValidString("\n  Enter email: ");
+                string phone = InputService.ReadValidString("\n  Enter phone: ");
 
                 //Create user based on role
                 User user;
@@ -67,29 +71,24 @@ namespace ProjectManagementApp
                 {
                     case UserRole.Administrator:
                         {
-                            user = new Administrator(username, password);
+                            user = new Administrator(username, password, firstName, lastName, email, phone);
                             break;
                         }
                     case UserRole.Manager:
                         {
-                            user = new Manager(username, password);
+                            user = new Manager(username, password, firstName, lastName, email, phone);
                             break;
                         }
                     case UserRole.TeamMember:
-                        {
-                            string firstName = InputService.ReadValidString("\n  Enter first name: ");
-                            string lastName = InputService.ReadValidString("\n  Enter last name: ");
-                            string email = InputService.ReadValidString("\n  Enter email: ");
-                            string phone = InputService.ReadValidString("\n  Enter phone: ");
-                            user = new TeamMember(username, password, firstName, lastName, email, phone);
+                        {                            
+                            string skills = InputService.ReadValidString("\n  Enter skills: ");
+                            user = new TeamMember(username, password, firstName, lastName, email, phone, skills);
                             break;
                         }
                     case UserRole.Intern:
                         {
-                            string firstName = InputService.ReadValidString("\n  Enter first name: ");
-                            string lastName = InputService.ReadValidString("\n  Enter last name: ");
                             string mentorUsername = InputService.ReadValidString("\n  Enter mentor username: ");
-                            user = new Intern(username, password, firstName, lastName, mentorUsername);
+                            user = new Intern(username, password, firstName, lastName, email, phone, mentorUsername);
                             break;
                         }
                     default:

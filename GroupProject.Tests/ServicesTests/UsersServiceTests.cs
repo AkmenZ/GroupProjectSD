@@ -24,8 +24,8 @@ namespace ProjectManagementApp.Tests
             // Initialize mock data
             _mockUsers = new List<User>
             {
-                new Manager("Manager1", "password"),
-                new Intern("Intern1", "password", "FirstName", "LastName", "Manager1")
+                new Manager("Manager1", "password", "Earl", "Grey", "earlgrey@mail.com", "098765543"),
+                new Intern("Intern1", "password", "FirstName", "LastName", "firsnamelastname@mail.com", "1234567890", "Manager1")
             };
 
             _mockUserRepository.Setup(repo => repo.GetAll()).Returns(_mockUsers);
@@ -40,7 +40,7 @@ namespace ProjectManagementApp.Tests
         public void AddUser_ValidUser_ShouldAddUser()
         {
             // Arrange
-            var newUser = new Manager("NewManager", "newPassword");
+            var newUser = new Manager("NewManager", "newPassword", "John", "Rambo", "johnrambo@kickass.com", "987755333");
             var passwordSalt = new byte[] { 1, 2, 3, 4 };
             var passwordHash = "hashedPassword";
 
@@ -60,7 +60,7 @@ namespace ProjectManagementApp.Tests
         public void AddUser_ExistingUsername_ShouldThrowException()
         {
             // Arrange
-            var existingUser = new Manager("Manager1", "password");
+            var existingUser = new Manager("Manager1", "password", "John", "Rambo", "johnrambo@kickass.com", "2092309092");
 
             // Act & Assert
             var exception = Assert.Throws<Exception>(() => _usersService.AddUser(existingUser, "password"));
@@ -71,7 +71,7 @@ namespace ProjectManagementApp.Tests
         public void AddUser_InternWithInvalidMentor_ShouldThrowException()
         {
             // Arrange
-            var newIntern = new Intern("Intern2", "password", "FirstName", "LastName", "InvalidMentor");
+            var newIntern = new Intern("Intern2", "password", "FirstName", "LastName", "email@mail.com", "0871234567", "InvalidMentor");
 
             // Act & Assert
             var exception = Assert.Throws<Exception>(() => _usersService.AddUser(newIntern, "password"));

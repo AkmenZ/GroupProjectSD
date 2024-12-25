@@ -3,22 +3,16 @@ namespace ProjectManagementApp
 {
     public class Intern : User, IIntern
     {
-        //Parameterless constructor for JSON deserialization
-        //Properties unique to TeamMember
-        [JsonProperty]
-        public string FirstName { get; private set; }
-        [JsonProperty]
-        public string LastName { get; private set; }
+        //Properties unique to Intern     
         [JsonProperty]
         public string MentorUsername { get; private set; }
+        //Parameterless constructor for JSON deserialization
         public Intern() { }
-        //Constructor for creating a new Manager
-        public Intern(string username, string password, string firstName, string lastName, string mentorUsername)
-            : base(username, password)
+        //Constructor for creating a new Intern
+        public Intern(string username, string password, string firstName, string lastName, string email, string phone, string mentorUsername)
+            : base(username, password, firstName, lastName, email, phone)
         {
-            Role = UserRole.Intern;
-            FirstName = firstName;
-            LastName = lastName;
+            Role = UserRole.Intern;           
             MentorUsername = mentorUsername;
         }
     }

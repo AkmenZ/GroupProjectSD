@@ -11,9 +11,10 @@ public class TeamMemberTests
         string lastName = "Member";
         string email = "testmember@example.com";
         string phoneNumber = "1234567890";
+        string skills = "C#, JavaScript, HTML";
 
         // The constructor should assign the correct role to a TeamMember instance.
-        var teamMember = new TeamMember(username, "password123", firstName, lastName, email, phoneNumber);
+        var teamMember = new TeamMember(username, "password123", firstName, lastName, email, phoneNumber, skills);
 
         Assert.Equal(UserRole.TeamMember, teamMember.Role);
     }
@@ -26,8 +27,9 @@ public class TeamMemberTests
         string lastName = "Member";
         string email = "testmember@example.com";
         string phoneNumber = "1234567890";
+        string skills = "C#, JavaScript, HTML";
 
-        var teamMember = new TeamMember(username, "password123", firstName, lastName, email, phoneNumber);
+        var teamMember = new TeamMember(username, "password123", firstName, lastName, email, phoneNumber, skills);
         string passwordHash = "hashedpassword";
         byte[] passwordSalt = new byte[] { 1, 2, 3, 4, 5 };
 

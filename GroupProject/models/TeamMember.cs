@@ -14,19 +14,18 @@ namespace ProjectManagementApp
         public string Email { get; private set; }
         [JsonProperty]
         public string Phone { get; private set; }
+        [JsonProperty]
+        public string Skills { get; private set; }
 
         //Parameterless constructor for JSON deserialization
         [JsonConstructor]
         public TeamMember() { }
         //Constructor for creating a new TeamMember
-        public TeamMember(string username, string password, string FirstName, string LastName, string Email, string Phone)
-            : base(username, password)
+        public TeamMember(string username, string password, string firstName, string lastName, string email, string phone, string skills)
+            : base(username, password, firstName, lastName, email, phone)
         {
             Role = UserRole.TeamMember;
-            FirstName = FirstName;
-            LastName = LastName;
-            Email = Email;
-            Phone = Phone;
+            Skills = skills;
         }
     }
 }
